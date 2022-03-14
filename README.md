@@ -17,7 +17,7 @@ Description  | elFinder web-based file manager running on JavaScript + PHP.
 Render Engine| Smarty v2 and XCube Layout
 Version      | 2.61
 Author       | @nao-pon Naoki Sawada
-Author       | Update @gigamaster Nuno Luciano (XCL7)
+Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
 Copyright    | 2005-2022 Author
 License      | GPL
 
