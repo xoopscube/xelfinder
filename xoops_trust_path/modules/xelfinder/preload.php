@@ -1,10 +1,21 @@
 <?php
+/**
+ * X-elFinder module for XCL
+ * @package    XelFinder
+ * @version    XCL 2.3.1
+ * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
+ * @copyright  (c) 2005-2022 Author
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ */
 
-if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
+if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
+	exit;
+}
 
-if( ! preg_match( '/^[0-9a-zA-Z_-]+$/' , $mydirname ) ) exit ;
+if ( ! preg_match( '/^[0-9a-zA-Z_-]+$/', $mydirname ) ) {
+	exit;
+}
 
-if( ! class_exists( 'xelfinderPreloadBase' ) ) {
 
 class xelfinderPreloadBase extends XCube_ActionFilter {
 	
@@ -77,4 +88,4 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 
 }
 
-eval( 'class '.ucfirst( $mydirname ).'_xelfinderPreload extends xelfinderPreloadBase { var $mydirname = \''.$mydirname.'\' ; var $mydirpath = \''.$mydirpath.'\' ; }' ) ;
+eval( 'class ' . ucfirst( $mydirname ) . '_xelfinderPreload extends xelfinderPreloadBase { var $mydirname = \'' . $mydirname . '\' ; var $mydirpath = \'' . $mydirpath . '\' ; }' );

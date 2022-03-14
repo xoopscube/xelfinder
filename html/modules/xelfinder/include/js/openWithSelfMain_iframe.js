@@ -1,40 +1,33 @@
-var XOOPS_URL;
-var XELFINDER_URL;
+// Open Modal iframe
+var XELFINDER_URL = document.location + '';
+var XOOPS_URL = XELFINDER_URL.split( '/' ).slice( 0, -3 ).join( '/' );
+// alert(XOOPS_URL);
+// console.log("XELFINDER_URL: " + XELFINDER_URL);
+// console.log("XOOPS_URL: " + XOOPS_URL);
 
-(function (){
-	var scripts = document.getElementsByTagName("head")[0].getElementsByTagName("script");
-	var i = scripts.length;
-	while (i--) {
-		var match = scripts[i].src.match(/^((.+)\/[^\/]+\/[^\/]+)\/include\/js\/openWithSelfMain_iframe\.js$/);
-		if (match) {
-			XELFINDER_URL = match[1];
-			XOOPS_URL = match[2];
-			break;
-		}
-	}
-	if (typeof jQuery == 'undefined') {
-		document.write (
-			'<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript" charset="utf-8"></script>'
-				+
-			'<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>'
-				+
-			'<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.min.css" type="text/css" media="screen" charset="utf-8">'
-		);
-	}
-	document.write (
-		'<link rel="stylesheet" href="'+XOOPS_URL+'/common/js/simplemodal/css/basic.css" type="text/css" media="screen" />'
-		+'<script defer="defer" type="text/javascript" src="'+XOOPS_URL+'/common/js/simplemodal/js/jquery.simplemodal.js"></script>'
-		+'<script defer="defer" type="text/javascript" src="'+XOOPS_URL+'/common/js/simplemodal/js/basic.js"></script>'
-		+'<script defer="defer" type="text/javascript">jQuery.noConflict();</script>'
-	);
-})();
+// Requires xScriptLoader util
+	var ScriptLoader = new xScriptLoader([
+		// XOOPS_URL+"/common/elfinder/js/elfinder.min.js",
+		XOOPS_URL+"/common/js/simplemodal/css/basic.css",
+		XOOPS_URL+"/common/js/simplemodal/js/jquery.simplemodal.js",
+		XOOPS_URL+"/common/js/simplemodal/js/basic.js",
+	]);
+
+ScriptLoader.loadFiles();
 
 function openWithSelfMain(url, name, w, h, returnwindow) {
+
+
 	var $ = jQuery;
 	var margin = $.mobile? 0 : 60;
+
 	w = $(window).width() - margin;
 	h = $(window).height() - margin;
-	$.modal('<iframe name="'+name+'" id="xelf_window" src="' + url + '" height="100%" width="100%" style="border:0;overflow:hidden;" allowtransparency="true" scrolling="no" frameborder="0" allowfullscreen="allowfullscreen">', {
+
+	$.modal(
+		'<iframe name="'+name+'" id="xelf_window" src="' + url +
+		'" height="100%" width="100%" style="border:0;overflow:hidden;" allowtransparency="true" allowfullscreen="allowfullscreen">', {
+
 		containerCss:{
 			backgroundColor:	"transparent",
 			borderColor:		"transparent",
@@ -56,10 +49,10 @@ function openWithSelfMain(url, name, w, h, returnwindow) {
 		zIndex:					100000
 	});
 
-	$('#xelf_window').load(
-		function(e){
+	$('#xelf_window').on( function(e){
 			$(this).css({overflow: 'auto'});
 			$.mobile && $('#simplemodal-container a.modalCloseImg').css({
+				position: relative,
 				top:0,
 				right:0});
 			setTimeout(function(){ e.target.contentWindow.focus(); }, 100);
@@ -67,6 +60,7 @@ function openWithSelfMain(url, name, w, h, returnwindow) {
 	);
 
 	var resizeTimer = null;
+
 	$(window).resize(function() {
 		resizeTimer && clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {

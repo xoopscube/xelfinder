@@ -11,16 +11,20 @@ if (isset($_POST['sessionId'])) {
 
 include '../../mainfile.php';
 
-if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'set XOOPS_TRUST_PATH in mainfile.php' ) ;
+if( ! defined( 'XOOPS_TRUST_PATH' ) ) {
+	die( 'set XOOPS_TRUST_PATH in mainfile.php' );
+}
 
 //error_reporting(0);
 
 while(ob_get_level()) {
-	if (! ob_end_clean()) break;
+	if (! ob_end_clean()) {
+		break;
+	}
 }
 
-$mydirname = basename( dirname( __FILE__ ) ) ;
-$mydirpath = dirname( __FILE__ ) ;
+$mydirname = basename( __DIR__ ) ;
+$mydirpath = __DIR__;
 
 require $mydirpath.'/mytrustdirname.php' ; // set $mytrustdirname
 

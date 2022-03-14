@@ -1,6 +1,9 @@
 <?php
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'xelfinder' ;
+if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) {
+	$mydirname = 'xelfinder';
+}
+
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
@@ -9,6 +12,9 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 define( $constpref.'_LOADED' , 1 ) ;
 
 define( $constpref.'_DESC' , 'Webベースのファイルマネージャ elFinder をイメージマネージャとして利用するモジュール');
+
+
+
 
 // admin menu
 define($constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;

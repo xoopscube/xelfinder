@@ -1,14 +1,16 @@
 <?php
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'xelfinder' ;
-$constpref = '_MI_' . strtoupper( $mydirname ) ;
+if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) {
+	$mydirname = 'xelfinder';
+}
+$constpref = '_MI_' . strtoupper( $mydirname );
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
+if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) ) {
 
 // a flag for this language file has already been read or not.
-define( $constpref.'_LOADED' , 1 ) ;
+	define( $constpref . '_LOADED', 1 );
 
-define( $constpref.'_DESC' , 'The module which uses the file manager elFinder of a Web base as an image manager.');
+	define( $constpref . '_DESC', 'The module which uses the file manager elFinder of a Web base as an image manager.' );
 
 // admin menu
 define( $constpref.'_ADMENU_GOTO_MODULE' , 'Goto Module' ) ;
