@@ -143,8 +143,7 @@ $title = mb_convert_encoding( $config['manager_title'], 'UTF-8', _CHARSET );
 
 $start = ( ! empty( $_GET['start'] ) && preg_match( '/^[a-zA-Z0-9_-]+$/', $_GET['start'] ) ) ? $_GET['start'] : '';
 
-while ( ob_get_level() && @ob_end_clean() ) {
-}
+while ( ob_get_level() && @ob_end_clean() ) {}
 
 ?>
     <!DOCTYPE html>
@@ -171,8 +170,7 @@ while ( ob_get_level() && @ob_end_clean() ) {
             <link rel="stylesheet" href="<?php echo $elfurl ?>/css/toast.css" type="text/css">
             <link rel="stylesheet" href="<?php echo $elfurl ?>/css/toolbar.css" type="text/css">
 		<?php } else { ?>
-            <link rel="stylesheet" href="<?php echo $elfurl ?>/css/elfinder.min.css?v=<?php echo $xelfVer ?>"
-                  type="text/css">
+            <link rel="stylesheet" href="<?php echo $elfurl ?>/css/elfinder.min.css?v=<?php echo $xelfVer ?>" type="text/css">
 		<?php } ?>
 
         <script src="<?php echo $jQueryUrl ?>"></script>
@@ -268,11 +266,8 @@ while ( ob_get_level() && @ob_end_clean() ) {
             <script src="<?php echo $elfurl ?>/js/elfinder.min.js?v=<?php echo $xelfVer ?>" charset="UTF-8"></script>
 		<?php } ?>
 
-        <script src="<?php echo $elfurl ?>/js/extras/quicklook.googledocs<?php if ( ! $debug ) { ?>.min<?php } ?>.js?v=<?php echo $xelfVer ?>"
-                charset="UTF-8"></script>
+        <script src="<?php echo $elfurl ?>/js/extras/quicklook.googledocs<?php if ( ! $debug ) { ?>.min<?php } ?>.js?v=<?php echo $xelfVer ?>" charset="UTF-8"></script>
         <script src="<?php echo $editorsJs ?>" charset="UTF-8"></script>
-
-
 
         <!-- elFinder initialization (REQUIRED) -->
         <link rel="stylesheet" href="<?php echo $myurl ?>/include/css/manager.css?v=<?php echo $xelfVer ?>" type="text/css">
@@ -306,9 +301,6 @@ while ( ob_get_level() && @ob_end_clean() ) {
 
         <script src="<?php echo $myurl ?>/include/js/commands/perm.js?v=<?php echo $xelfVer ?>"></script>
         <script src="<?php echo $myurl ?>/include/js/commands/auth.js?v=<?php echo $xelfVer ?>"></script>
-
-
-
         <script src="<?php echo $optionsJs ?>" charset="UTF-8"></script>
         <script src="<?php echo $myurl ?>/include/js/manager.js?v=<?php echo $xelfVer ?>" charset="UTF-8"></script>
         <script type="text/javascript" charset="UTF-8">

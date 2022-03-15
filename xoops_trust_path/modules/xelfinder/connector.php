@@ -56,7 +56,7 @@ try {
 		$_ps = explode( '/', trim( $_SERVER['PATH_INFO'], '/' ) );
 		if ( ! isset( $_GET['cmd'] ) ) {
 			$_cmd = $_ps[0];
-			if ( 'netmount' === $_cmd ) {
+			if ($_cmd === 'netmount') {
 				$_GET['cmd'] = $_cmd;
 				$_i          = 1;
 				foreach ( [ 'protocol', 'host' ] as $_k ) {
@@ -303,7 +303,7 @@ try {
 			$config['uploadMaxSize'] = @$config['upload_max_admin'];
 		} elseif ( $inSpecialGroup ) {
 			$config['uploadAllow']   = @$config['upload_allow_spgroups'];
-			$config['auto_resize']   = @$config['auto_resize_spgroups'];
+			$config['autoResize']    = @$config['auto_resize_spgroups'];
 			$config['uploadMaxSize'] = @$config['upload_max_spgroups'];
 		} elseif ( $memberUid ) {
 			$config['uploadAllow']   = @$config['upload_allow_user'];
@@ -331,7 +331,7 @@ try {
 		} else {
 			$config['URL'] = _MD_XELFINDER_MODULE_URL . '/' . $mydirname . '/index.php?page=view&file=';
 		}
-
+		
 		if ( ! isset( $extras[ $mydirname . ':xelfinder_db' ] ) ) {
 			$extras[ $mydirname . ':xelfinder_db' ] = [];
 		}
@@ -357,34 +357,40 @@ try {
 		) {
 			$extras[ $mydirname . ':xelfinder_db' ][ $_extra ] = empty( $config[ $_extra ] ) ? '' : $config[ $_extra ];
 		}
-		if ( ! empty( $config['autoResize'] ) ) {
-			$extras[ $mydirname . ':xelfinder_db' ]['plugin']['AutoResize'] = [
-				'enable'    => true,
+		if (! empty($config['autoResize'])) {
+			$extras[$mydirname.':xelfinder_db']['plugin']['AutoResize'] = array(
+				'enable' => true,
 				'maxHeight' => $config['autoResize'],
-				'maxWidth'  => $config['autoResize']
-			];
+				'maxWidth' => $config['autoResize'],
+				'offDropWith' => ($isAdmin || $inSpecialGroup)? 4 : null // Disable with Ctrl key 
+			);
 		}
-
-		$rootConfig = $xoops_elFinder->getRootVolumeConfigs( $config['volume_setting'], $extras );
-
+		
+		$rootConfig = $xoops_elFinder->getRootVolumeConfigs($config['volume_setting'], $extras);
+		
 		// Add net(FTP) volume
-		if ( $isAdmin && ! empty( $config['ftp_host'] ) && ! empty( $config['ftp_port'] ) && ! empty( $config['ftp_user'] ) && ! empty( $config['ftp_pass'] ) ) {
-			$ftp          = [
-				'driver'             => 'FTPx',
-				'id'                 => 'ad',
-				'alias'              => $config['ftp_name'],
-				'host'               => $config['ftp_host'],
-				'port'               => $config['ftp_port'],
-				'path'               => $config['ftp_path'],
-				'user'               => $config['ftp_user'],
-				'pass'               => $config['ftp_pass'],
-				'disabled'           => ! empty( $config['ftp_search'] ) ? [] : [ 'search' ],
-				'statOwner'          => true,
+		if ($isAdmin && !empty($config['ftp_host']) && !empty($config['ftp_port']) && !empty($config['ftp_user']) && !empty($config['ftp_pass'])) {
+			$ftp = array(
+				'driver'  => 'FTPx',
+				'id'      => 'ad',
+				'alias'   => $config['ftp_name'],
+				'host'    => $config['ftp_host'],
+				'port'    => $config['ftp_port'],
+				'path'    => $config['ftp_path'],
+				'user'    => $config['ftp_user'],
+				'pass'    => $config['ftp_pass'],
+				'disabled'=> !empty($config['ftp_search'])? array() : array('search'),
+				'statOwner' => true,
 				'allowChmodReadOnly' => true,
-				'is_local'           => true,
-				'tmpPath'            => XOOPS_MODULE_PATH . '/' . $mydirname . '/cache',
-				'utf8fix'            => true,
-				'defaults'           => [ 'read' => true, 'write' => true, 'hidden' => false, 'locked' => false ],
+				'is_local'=> true,
+				'tmpPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
+				'utf8fix' => true,
+				'defaults'=> [ 
+				   'read' => true, 
+				  'write' => true, 
+			     'hidden' => false, 
+				 'locked' => false 
+				],
 				'attributes'         => [
 					[
 						'pattern' => '~/\.~',
@@ -399,7 +405,7 @@ try {
 		}
 		if ( defined( 'ELFINDER_DROPBOX_APPKEY' ) && $config['dropbox_path'] && $config['dropbox_acc_token'] ) {
 			if ( $config['dropbox_acc_seckey'] ) {
-				if ( $token2 = elFinderVolumeDropbox2::getTokenFromOauth1( ELFINDER_DROPBOX_APPKEY, ELFINDER_DROPBOX_APPSECRET, $config['dropbox_acc_token'], $config['dropbox_acc_seckey'] ) ) {
+				if ($token2 = elFinderVolumeDropbox2::getTokenFromOauth1( ELFINDER_DROPBOX_APPKEY, ELFINDER_DROPBOX_APPSECRET, $config['dropbox_acc_token'], $config['dropbox_acc_seckey'] ) ) {
 					$config['dropbox_acc_token'] = $token2;
 				}
 			}
@@ -443,7 +449,7 @@ try {
 				$rootConfig[] = [ 'raw' => $dropbox ];
 			}
 		}
-
+		
 		try {
 			if ( $serVar = @serialize( $rootConfig ) ) {
 				$_SESSION[ 'XELFINDER_RF_' . $mydirname ]       = base64_encode( $serVar );
@@ -551,7 +557,7 @@ try {
 			$xoops_elFinder->netmountCallback( null, $_result, null, $elfinder );
 		}
 	}
-
+	
 	$connector->run();
 } catch ( Exception $e ) {
 	exit( json_encode( [ 'error' => $e->getMessage() ] ) );

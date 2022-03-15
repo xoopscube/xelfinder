@@ -16,6 +16,7 @@ if ( ! preg_match( '/^[0-9a-zA-Z_-]+$/', $mydirname ) ) {
 	exit;
 }
 
+if( ! class_exists( 'xelfinderPreloadBase' ) ) {
 
 class xelfinderPreloadBase extends XCube_ActionFilter {
 	
@@ -88,4 +89,4 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 
 }
 
-eval( 'class ' . ucfirst( $mydirname ) . '_xelfinderPreload extends xelfinderPreloadBase { var $mydirname = \'' . $mydirname . '\' ; var $mydirpath = \'' . $mydirpath . '\' ; }' );
+eval( 'class '.ucfirst( $mydirname ).'_xelfinderPreload extends xelfinderPreloadBase { var $mydirname = \''.$mydirname.'\' ; var $mydirpath = \''.$mydirpath.'\' ; }' ) ;

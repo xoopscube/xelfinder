@@ -1,55 +1,55 @@
 <?php
 // compatibility for PHP < 5.2
 
-if ( ! function_exists( 'error_get_last' ) ) {
+if(!function_exists('error_get_last')) {
 	function error_get_last() {
-		return [
-			'type'    => 0,
-			'message' => $GLOBALS[ php_errormsg ],
-			'file'    => 'unknonw',
-			'line'    => 0,
-		];
+		return array(
+				'type' => 0,
+				'message' => $GLOBALS[php_errormsg],
+				'file' => 'unknonw',
+				'line' => 0,
+		);
 	}
 }
 
 // json support
-if ( ! extension_loaded( 'json' ) ) {
+if (! extension_loaded('json')) {
 	require_once 'Services/JSON.php';
-	if ( ! function_exists( 'json_decode' ) ) {
-		function json_decode( $content, $assoc = false ) {
-			$json = $assoc ? new Services_JSON( SERVICES_JSON_LOOSE_TYPE ) : new Services_JSON();
-
-			return $json->decode( $content );
+	if (!function_exists('json_decode')){
+		function json_decode($content, $assoc=false) {
+			$json = $assoc?new Services_JSON(SERVICES_JSON_LOOSE_TYPE):new Services_JSON;
+			return $json->decode($content);
 		}
 	}
-	if ( ! function_exists( 'json_encode' ) ) {
-		function json_encode( $content ) {
-			$json = new Services_JSON();
+	if (!function_exists('json_encode')){
+		function json_encode($content){
+			$json = new Services_JSON;
 
-			return $json->encode( $content );
+			return $json->encode($content);
 		}
 	}
 }
 
-if ( ! function_exists( 'sys_get_temp_dir' ) ) {
-	function sys_get_temp_dir() {
-		if ( ! empty( $_ENV['TMP'] ) ) {
-			return realpath( $_ENV['TMP'] );
+if (!function_exists('sys_get_temp_dir')) {
+	function sys_get_temp_dir()
+	{
+		if (!empty($_ENV['TMP'])) {
+			return realpath($_ENV['TMP']);
 		}
-
-		if ( ! empty( $_ENV['TMPDIR'] ) ) {
-			return realpath( $_ENV['TMPDIR'] );
+	
+		if (!empty($_ENV['TMPDIR'])) {
+			return realpath( $_ENV['TMPDIR']);
 		}
-
-		if ( ! empty( $_ENV['TEMP'] ) ) {
-			return realpath( $_ENV['TEMP'] );
+	
+		if (!empty($_ENV['TEMP'])) {
+			return realpath( $_ENV['TEMP']);
 		}
+	
+		$tempfile = tempnam(uniqid(rand(),TRUE),'');
+		if (file_exists($tempfile)) {
+			unlink($tempfile);
 
-		$tempfile = tempnam( uniqid( mt_rand(), true ), '' );
-		if ( file_exists( $tempfile ) ) {
-			unlink( $tempfile );
-
-			return realpath( dirname( $tempfile ) );
+			return realpath(dirname($tempfile));
 		}
 	}
 }
@@ -67,25 +67,25 @@ if ( ! function_exists( 'sys_get_temp_dir' ) ) {
  * @return array|bool
  * @category  PHP
  * @package   PHP_Compat
- * @license   LGPL - https:///www.gnu.org/licenses/lgpl.html
+ * @license   LGPL - https://www.gnu.org/licenses/lgpl.html
  * @copyright 2004-2009 Aidan Lister <aidan@php.net>, Arpad Ray <arpad@php.net>
- * @link      https:///php.net/function.str_getcsv
+ * @link      https://php.net/function.str_getcsv
  * @author    HM2K <hm2k@php.net>
  * @version   $CVS: 1.0 $
  * @since     5.3.0
  * @require   PHP 4.0.0 (fgetcsv)
  */
-function php_compat_str_getcsv( $input, $delimiter = ',', $enclosure = '"', $escape = '\\' ) {
+function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 	$fh = tmpfile();
-	fwrite( $fh, $input );
-	rewind( $fh );
-	$data = [];
-	while ( false !== ( $row = php_compat_fgetcsv_wrap( $fh, 1000, $delimiter, $enclosure, $escape ) ) ) {
+	fwrite($fh, $input);
+	rewind($fh);
+	$data = array();
+	while (($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape)) !== FALSE) {
 		$data[] = $row;
 	}
-	fclose( $fh );
+	fclose($fh);
 
-	return empty( $data ) ? false : $data;
+	return empty($data) ? false : $data;
 }
 
 /**
@@ -101,15 +101,16 @@ function php_compat_str_getcsv( $input, $delimiter = ',', $enclosure = '"', $esc
  *
  * @return array|false|null
  */
-function php_compat_fgetcsv_wrap( $fh, $length, $delimiter = ',', $enclosure = '"', $escape = '\\' ) {
+function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 	// The escape parameter was added
-	if ( PHP_VERSION_ID >= 50300 ) {
-		return fgetcsv( $fh, $length, $delimiter, $enclosure, $escape );
-	} // The enclosure parameter was added
-	elseif ( PHP_VERSION_ID >= 40300 ) {
-		return fgetcsv( $fh, $length, $delimiter, $enclosure );
+	if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
+		return fgetcsv($fh, $length, $delimiter, $enclosure, $escape);
+	}
+	// The enclosure parameter was added
+	elseif (version_compare(PHP_VERSION, '4.3.0', '>=')) {
+		return fgetcsv($fh, $length, $delimiter, $enclosure);
 	} else {
-		return fgetcsv( $fh, $length, $delimiter );
+		return fgetcsv($fh, $length, $delimiter);
 	}
 }
 
@@ -147,7 +148,7 @@ if ( ! function_exists( 'array_replace_recursive' ) ) {
 
 		return $array;
 	}
-
+	
 	function array_replace_recursive( $array, $array1 ) {
 		// handle the arguments, merge one by one
 		$args  = func_get_args();
