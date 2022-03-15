@@ -19,7 +19,8 @@ Version      | 2.61
 Author       | @nao-pon Naoki Sawada
 Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
 Copyright    | 2005-2022 Author
-License      | GPL
+License      | XCL module is distributed under a GPL 2.3 License.
+License      | elFinder is distributed under a 3-Clause BSD License.
 
 
 ##### :computer: The Minimum Requirements
