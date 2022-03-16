@@ -87,6 +87,7 @@ include __DIR__ . '/mymenu.php';
 
 echo '<hr><h3>' . xelfinderAdminLang( 'GOOGLEDRIVE_GET_TOKEN' ) . '</h3>';
 
+
 if ( $php54up && $vendor ) {
 	$form = true;
 	if ( $client ) {

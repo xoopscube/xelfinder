@@ -7,11 +7,6 @@ if ( 'mymenu' == preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] ) ) {
 	exit;
 }
 
-// Skip for ORETEKI XOOPS
-if ( defined( 'XOOPS_ORETEKI' ) ) {
-	return;
-}
-
 global $xoopsModule;
 if ( ! is_object( $xoopsModule ) ) {
 	die( '$xoopsModule is not set' );

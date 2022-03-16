@@ -6,7 +6,7 @@
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    GPL V2.0
  */
 
 // language file (modinfo.php)
@@ -31,11 +31,11 @@ $modversion['cube_style']       = true;
 $modversion['help']             = 'help.html';
 $modversion['license']          = 'GPL';
 $modversion['official']         = 0;
-// $modversion['image'] = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
-$modversion['image']         = '/images/module_xelfinder.svg';
-$modversion['dirname']       = $mydirname;
-$modversion['trust_dirname'] = $mytrustdirname;
-$modversion['read_any']      = true;
+// $modversion['image']         = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
+$modversion['image']            = '/images/module_xelfinder.svg';
+$modversion['dirname']          = $mydirname;
+$modversion['trust_dirname']    = $mytrustdirname;
+$modversion['read_any']         = true;
 
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false;
@@ -52,7 +52,7 @@ $modversion['hasSearch'] = 0;
 //$modversion['search']['func'] = $mydirname.'_global_search' ;
 
 // Menu
-$modversion['hasMain'] = 1;
+$modversion['hasMain'] = 1 ;
 
 // Submenu (just for mainmenu)
 $modversion['sub'] = [];
@@ -93,7 +93,7 @@ $modversion['config'] = [
 		'description' => $constpref . '_VOLUME_SETTING_DESC',
 		'formtype'    => 'textarea',
 		'valuetype'   => 'string',
-		'default'     => $mydirname . ':xelfinder_db:uploads/xelfinder:' . constant( $constpref . '_SHARE_HOLDER' ) . '
+		'default'     => $mydirname . ':xelfinder_db:uploads/xelfinder:' . constant( $constpref . '_SHARE_FOLDER' ) . '
 ' . $mydirname . ':xelfinder:uploads/elfinder:elFinder:gid=1
 myalbum:myalbum:uploads/photos:MyAlbum
 gnavi:gnavi:uploads/gnavi:GNAVI

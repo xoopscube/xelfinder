@@ -12,23 +12,21 @@ class elFinderVolumeXoopsXelfinder extends elFinderVolumeLocalFileSystem {
 	/**
 	 * Put file stat in cache and return it
 	 *
-	 * @param string $path file path
-	 * @param array $stat file stat
-	 *
+	 * @param  string  $path   file path
+	 * @param  array   $stat   file stat
 	 * @return array
 	 * @author Dmitry (dio) Levashov
 	 **/
-	protected function updateCache( $path, $stat ) {
-		$stat = parent::updateCache( $path, $stat );
-		if ( $stat && 'directory' !== $stat['mime'] ) {
-			if ( 0 === strpos( $path, XOOPS_TRUST_PATH ) ) {
-				$stat['_localpath'] = str_replace( XOOPS_ROOT_PATH, 'T', $path );
+	protected function updateCache($path, $stat) {
+		$stat = parent::updateCache($path, $stat);
+		if ($stat && $stat['mime'] !== 'directory') {
+			if (strpos($path, XOOPS_TRUST_PATH) === 0) {
+				$stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'T', $path );
 			} else {
-				$stat['_localpath'] = str_replace( XOOPS_ROOT_PATH, 'R', $path );
+				$stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', $path );
 			}
 		}
-
-		return $this->cache[ $path ] = $stat;
+		return $this->cache[$path] = $stat;
 	}
-
+	
 }

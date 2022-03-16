@@ -1,40 +1,40 @@
 <?php
 /*
- * Created on 2012/01/20 by nao-pon https://xoops.hypweb.net/
+ * Created on 2012/01/20 by nao-pon http://xoops.hypweb.net/
  */
 
 $_path = '';
-if ( 0 === strpos( $path, '/[trust]' ) ) {
-	$path = str_replace( '/[trust]', XOOPS_TRUST_PATH, $path );
+if (strpos($path, '/[trust]') === 0) {
+	$path = str_replace('/[trust]', XOOPS_TRUST_PATH, $path);
 } else {
 	$_path = $path;
-	$path  = XOOPS_ROOT_PATH . $path;
+	$path = XOOPS_ROOT_PATH . $path;
 }
-if ( is_dir( $path ) ) {
+if (is_dir($path)) {
 
-	$volumeOptions = [
-		'driverSrc'    => __DIR__ . '/driver.class.php',
-		'driver'       => 'XoopsXelfinder',
-		'mydirname'    => $mydirname,
-		'path'         => $path,
-		'URL'          => $_path ? _MD_XELFINDER_SITEURL . $_path : '',
-		'alias'        => $title,
-		'tmbURL'       => _MD_XELFINDER_MODULE_URL . '/' . $mydirname . '/cache/tmb/',
-		'tmbPath'      => XOOPS_MODULE_PATH . '/' . $mydirname . '/cache/tmb',
-		'quarantine'   => XOOPS_TRUST_PATH . '/cache',
+	$volumeOptions = array(
+		'driverSrc'  => dirname(__FILE__) . '/driver.class.php',
+		'driver'     => 'XoopsXelfinder',
+		'mydirname'  => $mydirname,
+		'path'       => $path,
+		'URL'        => $_path? _MD_XELFINDER_SITEURL . $_path : '',
+		'alias'      => $title,
+		'tmbURL'     => _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/cache/tmb/',
+		'tmbPath'    => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache/tmb',
+		'quarantine' => XOOPS_TRUST_PATH.'/cache',
 		//'tmbSize'    => 140,
 		//'tmbCrop'    => false,
 		// 'startPath'  => '../files/test',
 		// 'deep' => 3,
 		// 'separator' => ':',
-		'uploadAllow'  => ( $isAdmin ? [ 'all' ] : [ 'image' ] ),
+		'uploadAllow'     => ($isAdmin? array('all') : array('image')),
 		// mimetypes not allowed to upload
-		'uploadDeny'   => ( $isAdmin ? [ '' ] : [ 'all' ] ),
+		'uploadDeny'      => ($isAdmin? array('') : array('all')),
 		// order to proccess uploadAllow and uploadDeny options
-		'uploadOrder'  => [ 'deny', 'allow' ],
+		'uploadOrder'     => array('deny', 'allow'),
 		// regexp or function name to validate new file name
-		'acceptedName' => ( $isAdmin ? '/^[^\/\\?*:|"<>]*[^.\/\\?*:|"<>]$/' : '/^(?:\w+|\w[\w\s\.\%\-\(\)\[\]]*\.(?:txt|gif|jpeg|jpg|png))$/ui' ),
-		'defaults'     => [ 'read' => true, 'write' => true ]
-	];
+		'acceptedName'    => ($isAdmin? '/^[^\/\\?*:|"<>]*[^.\/\\?*:|"<>]$/' : '/^(?:\w+|\w[\w\s\.\%\-\(\)\[\]]*\.(?:txt|gif|jpeg|jpg|png))$/ui'),
+		'defaults' => array('read' => true, 'write' => true)
+	);
 
 }

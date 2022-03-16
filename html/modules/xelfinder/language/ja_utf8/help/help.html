@@ -26,18 +26,18 @@
     <section id="help-volume">
         <h3>Volume Drivers</h3>
         <table style="font-size: small">
-            <tr><th colspan="2">Common options</th></tr>
-            <tr><td>"#"</td><td>use hashtag to comment a line to ignore</td></tr>
-            <tr><td>"|"</td><td>use pipe to separate multiple options</td></tr>
-            <tr><td>"gid="</td><td>use comma to spate Group ID</td></tr>
-            <tr><td>"defaults="</td><td>set permissions with each initial "r"ead, "w"rite, "h"idden, and "l"ock. Example: defaults=rw</td></tr>
-            <tr><td>"uploadMaxSize="</td><td>i.e 2M maximum upload file size</td></tr>
-            <tr><td>"id="</td><td>Arbitrary unique ID</td></tr>
-            <tr><td>"encoding="</td><td>character encoding (use iconv)</td></tr>
-            <tr><td>"locale="</td><td>Important for encoding</td></tr>
-            <tr><td>"chmod=1"</td><td>Enable chmod on supported volume only</td></tr>
+            <tr><th colspan="2">共通オプション</th></tr>
+            <tr><td>"#"</td><td>先頭に  を置くと無視されます</td></tr>
+            <tr><td>"|"</td><td>オプションは 「|」 で区切ります</td></tr>
+            <tr><td>"gid="</td><td>有効にするグループIDをカンマ区切りで指定</td></tr>
+            <tr><td>"defaults="</td><td>read, write, hidden, lock の各パーミッションをデフォルトとして有効にするものをそれぞれの頭文字 r w h l で指定（例: defaults=rw</td></tr>
+            <tr><td>"uploadMaxSize="</td><td>アップロードファイルサイズの上限値(例:2M)</td></tr>
+            <tr><td>"id="</td><td>任意の一意なID（固定リンクのURLハッシュに利用されます)</td></tr>
+            <tr><td>"encoding="</td><td>文字エンコーディング(iconvで有効な値)</td></tr>
+            <tr><td>"locale="</td><td>ロケール(重要: encoding に対応する適切なロケール)</td></tr>
+            <tr><td>"chmod=1"</td><td>chmod が可能な場合、ファイル属性の変更を許可</td></tr>
         </table>
-        <pre>[Module directory name]:[Plugin name]:[Saved files directory path]:[View name]:[Options]</pre>
+        <pre>[モジュールディレクトリ名]:[プラグイン名]:[ファイル格納ディレクトリ]:[表示名]:[オプション]</pre>
     </section>
 
 
