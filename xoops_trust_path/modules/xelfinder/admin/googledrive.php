@@ -3,7 +3,7 @@
  * X-elFinder module for XCL
  * @package    XelFinder
  * @version    XCL 2.3.1
- * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Nuno Luciano (aka Gigamaster) 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2022 Author
  * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
@@ -16,13 +16,12 @@ if ( $php54up = version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 
 	// Check if vendor file exists and print a message
 	$filename = $mytrustdirpath . '/plugins/vendor/autoload.php';
-
 	if ( ! file_exists( $filename ) ) {
-		$googledrivefail = sprintf( 'The file does not exist : %s ', $filename );
+        $googledrivefail = sprintf( '<div class="error"><p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_ERROR' ).'</p></div><div class="message-warning"><p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_FAIL' ).'</p></div>', $filename );
 	} else {
-		$googledrivepass = sprintf( 'file %s exists', $filename );
+        $googledrivepass = sprintf('<div class="success">'.xelfinderAdminLang ( 'COMPOSER_UPDATE_SUCCESS' ).'</div>', $filename);
 
-
+        // AUTOLOAD
 		if ( include_once $mytrustdirpath . '/plugins/vendor/autoload.php' ) {
 			$vendor        = true;
 			$selfURL       = XOOPS_MODULE_URL . '/' . $mydirname . '/admin/index.php?page=googledrive';
@@ -85,7 +84,7 @@ if ( $php54up = version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 xoops_cp_header();
 include __DIR__ . '/mymenu.php';
 
-echo '<hr><h3>' . xelfinderAdminLang( 'GOOGLEDRIVE_GET_TOKEN' ) . '</h3>';
+echo '<h2>'. xelfinderAdminLang( 'GOOGLEDRIVE_GET_TOKEN' ) .'</h2>';
 
 
 if ( $php54up && $vendor ) {
@@ -104,13 +103,23 @@ if ( $php54up && $vendor ) {
 					$token['refresh_token'] = $aToken['refresh_token'];
 				}
 				$ext_token = json_encode( $token );
+
+                echo $googledrivepass;
+
 				echo '<h3>Google Drive API Token</h3>';
-				echo '<div class="success">' . $googledrivepass . '</div>';
 				echo '<div><textarea class="allselect" style="width:70%;height:5em;" spellcheck="false">' . $ext_token . '</textarea></div>';
-				echo '<h3>Example to Volume Driver Setting</h3>';
-				echo '<div><p>Folder ID as root: <input type=text id="xelfinder_googledrive_folder" value="root"></input> "root" is <a href="https://drive.google.com/drive/my-drive" target="_blank">"My Drive" of your Google Drive</a>.</p>';
-				echo '<p>You can find the folder ID to the URL(folders/[Folder ID]) of the site of <a href="https://drive.google.com/drive/">GoogleDrive</a>.</p></div>';
-				echo '<div><textarea class="allselect" style="width:70%;height:7em;" id="xelfinder_googledrive_volconf" spellcheck="false">xelfinder:GoogleDrive:root:GoogleDrive:gid=1|id=gd|ext_token=' . $ext_token . '</textarea></div>';
+
+				echo '<h3>Example to Volume Driver Setting</h3>'
+                    .'<div class="tips">The default "root" folder is <a href="https://drive.google.com/drive/my-drive" target="_blank">"My Drive" of your Google Drive</a><br>'
+                    .'You can set an ID of a specific folder.</div>'
+                    .'<div class="ui-card-full">'
+				    .'<p>Folder ID <input type=text id="xelfinder_googledrive_folder" value="root"></p>';
+				echo '<p>You can find the folder ID to the URL(folders/[Folder ID]) of the site of <a href="https://drive.google.com/drive/" target="_blank">GoogleDrive</a>.</p>'
+                    .'</div>';
+                echo '<div class="tips">Copy and paste to a newline in <a href="index.php?action=PreferenceEdit&confmod_id=11" target="_blank">Preferences > Volume Drivers</a></div>';
+				echo '<div class="ui-card-full">'
+                    .'<textarea class="allselect" style="width:70%;height:7em;" id="xelfinder_googledrive_volconf" spellcheck="false">xelfinder:GoogleDrive:root:GoogleDrive:gid=1|id=gd|ext_token=' . $ext_token . '</textarea>'
+                    .'</div>';
 				echo "<script>(function($){
 					$('#xelfinder_googledrive_folder').on('change keyup mouseup paste', function(e) {
 						var self = $(this);
@@ -122,14 +131,22 @@ if ( $php54up && $vendor ) {
 					});
 					$('textarea.allselect').on('focus', function() { $(this).select(); });
 				})(jQuery);</script>";
-				echo '<h4><a href="' . $selfURL . '&start">Reauthorization</a></h4>';
+
+
+				echo '<h3>Authentication and authorization reauthorization</h3>';
+
+                echo'<p><a class="ui-btn" href="' . $selfURL . '&start">Reauthorization</a></p>';
 				$form = false;
+
 			} catch ( Google_Exception $e ) {
 				echo $e->getMessage();
 			}
 		} elseif ( ! empty( $_POST['scopes'] ) ) {
 			if ( ! empty( $_POST['revoke'] ) ) {
-				$client->revokeToken();
+                // TODO BUGFIX! @gigamaster Argument 1 passed to Google_AccessToken_Revoke::revokeToken() must be of the type array, null given
+				//$client->revokeToken();
+                // TODO BUGFIX! @gigamaster
+                $client->revokeToken(['refresh_token' => $token]);
 			}
 			$scopes = [];
 			foreach ( $_POST['scopes'] as $scope ) {
@@ -148,80 +165,107 @@ if ( $php54up && $vendor ) {
 				$client->setAccessType( 'offline' );
 			}
 			$authUrl = $client->createAuthUrl();
-			echo '<a href="' . $authUrl . '">Please allow the application access.</a>';
+            echo '<p>All requests to the API must be authorized by an authenticated user.</p>
+        <p>Both Sign In With Google and One Tap authentication include a consent screen which tells users the application 
+            requesting access to their data, what kind of data they are asked for and the terms that apply.</p>';
+			echo '<a class="ui-btn" href="' . $authUrl . '" target="_blank">Please allow the application access.</a>';
 			$form = false;
 		}
 	}
 	if ( $form ) {
 		?>
         <h3>Authentication options</h3>
-        <hr>
-        <h4>Step by step</h4>
-        <ol>
-            <li>Make Project in Google Developers Console (<a
-                        href="https://console.developers.google.com/apis/dashboard" target="_brank">console.developers.google.com/apis/dashboard</a>)
-            </li>
-            <li>Enable Drive API</li>
-            <li>Make Authentication infomation (Type of Web Server & User data)</li>
-            <li>Make OAuth 2.0 Client<br>(Redirect URI: <?php echo $selfURL; ?> )</li>
-            <li>Get JSON and Paste it next TextArea</li>
-            <li>And Click "Get authentication link"</li>
-            <li>Then Approve this app in your account</li>
-        </ol>
+        <div class="ui-card-full">
+            <h4>Step by step</h4>
+            <ol>
+                <li>Create a "New Project" in Google Developers Console :
+                    <a href="https://console.developers.google.com/apis/dashboard" target="_brank">console.developers.google.com/apis/dashboard</a>)
+                </li>
+                <li>Enable Drive API<br>
+                    To enable the Drive API, complete these steps:<br>
+                    <ol>
+                        <li>Go to the <a href="https://console.developers.google.com/" target="_brank">Google API Console</a>.</li>
+                        <li>Select a project.</li>
+                        <li>In the sidebar on the left, expand <strong>APIs &amp; auth</strong> and select <strong>APIs</strong>.</li>
+                        <li>In the displayed list of available APIs, click the Drive API link and
+                            click <strong>Enable API</strong>.</li>
+                    </ol>
+                </li>
+                <li>Make Authentication information (Type of Web Server & User data)</li>
+                <li>Make OAuth 2.0 Client<br>
+                    Redirect URI: <pre><?php echo $selfURL; ?></pre>
+                </li>
+                <li>Get JSON and Paste it next TextArea</li>
+                <li>And Click "Get authentication link"</li>
+                <li>Then Approve this app in your account</li>
+            </ol>
+        </div>
         <form action="index.php?page=googledrive" method="post">
-            <h4>Web client ID and Secret key</h4>
-            <p>
-                JSON: <textarea name="json"></textarea>
-            </p>
-            <p><strong>OR</strong></p>
-            <p>
-                ClientId: <input type="text" name="ClientId" style="width: 50em"
-                                 value="<?php echo htmlspecialchars( $clientId ); ?>"><br>
-            </p>
-            <p>
-                ClientSecret: <input type="text" name="ClientSecret"
-                                     style="width: 20em"
-                                     value="<?php echo htmlspecialchars( $clientSecret ); ?>">
-            </p>
-            <h4>Required scopes</h4>
-            <p>
-                <input type="checkbox" name="scopes[]" value="DRIVE" checked="checked">:
-                Google Drive(Read & Write)<br> <input type="checkbox"
-                                                      name="scopes[]" value="DRIVE_READONLY">: Google Drive(Read
-                only)<br>
-                <input type="checkbox" name="scopes[]" value="DRIVE_FILE">: Google
-                Drive(Read & Write, Only opened or created with this app)<br> <input
-                        type="checkbox" name="scopes[]" value="DRIVE_PHOTOS_READONLY">:
-                Google Photes(Read only)<br> <input type="checkbox" name="scopes[]"
-                                                    value="DRIVE_APPS_READONLY">: Google Appss(Read only)
-            </p>
-            <h4>Continuous connectivity</h4>
-            <div>Are you need refresh token?</div>
-            <input type="radio" name="offline" value="1" checked="checked"> Yes
-            &nbsp;|&nbsp; <input type="radio" name="offline" value="0"> No
-            (Expiration time: 1 hour)
-            <h4>Revoke previous authentication</h4>
-            <input type="checkbox" name="revoke" value="1">: Revoke
-            <p>
-                <input type="submit" value="Get authentication link">
-            </p>
-            <input type="hidden" name="auth" value="1">
-        </form>
-		<?php
-	}
-} else if ( $php54up && $googledrivefail ) {
-	?>
-    <div class="error">The driver is currently not installed!</div>
-    <div class="message-warning"><?php echo $googledrivefail; ?></div>
 
-    <div class="tips">GoogleDrive Driver needs to perform "<a
-                href="./index.php?page=vendorup"><?php echo xelfinderAdminLang( 'ADMENU_VENDORUPDATE' ) ?></a>". Run it
-        to see the contents of this menu.
-    </div>
-	<?php
+            <hr>
+
+            <h3>Web client ID and Secret key</h3>
+
+            <div class="tips">Copy and past here the content of json file "client_secrect_xxxx.json"</div>
+
+            <div class="ui-card-full">
+                <p>JSON client secret :</p>
+
+                <textarea name="json" rows="4" style="width: 40em"></textarea>
+
+                <p><strong>OR</strong></p>
+                <p>ClientId:<br>
+                    <input type="text" name="ClientId" style="width: 40em" value="<?php echo htmlspecialchars( $clientId ); ?>"><br>
+                </p>
+                <p>ClientSecret:<br>
+                    <input type="text" name="ClientSecret" style="width: 40em" value="<?php echo htmlspecialchars( $clientSecret ); ?>">
+                </p>
+            </div>
+
+            <h3>Required scopes</h3>
+            <div class="ui-card-full">
+            <p>
+                <input type="checkbox" name="scopes[]" value="DRIVE" checked="checked"> Google Drive (Read & Write)
+                <br>
+                <input type="checkbox" name="scopes[]" value="DRIVE_READONLY"> Google Drive (Read only)
+                <br>
+                <input type="checkbox" name="scopes[]" value="DRIVE_FILE"> Google Drive (Read & Write, Only opened or created with this app)
+                <br>
+                <input type="checkbox" name="scopes[]" value="DRIVE_PHOTOS_READONLY"> Google Photos (Read only)
+                <br>
+                <input type="checkbox" name="scopes[]" value="DRIVE_APPS_READONLY"> Google Apps (Read only)
+            </p>
+            </div>
+
+            <h3>Continuous connectivity</h3>
+            <div class="tips">
+                A short-lived access token helps improve the security of our applications, but it comes with a cost: when it expires, the user needs to log in again to get a new one. Frequent re-authentication can diminish the perceived user experience of your application</div>
+            <div class="ui-card-full">
+                <p>Keeping Refresh Tokens Secure</p>
+                <p><input type="radio" name="offline" value="1" checked="checked"> Yes</p>
+                <p><input type="radio" name="offline" value="0"> No (Expiration time: 1 hour)</p>
+            </div>
+
+            <h3>Revoke previous authentication</h3>
+            <div class="ui-card-full">
+                <p><input type="checkbox" name="revoke" value="1"> Revoke</p>
+                <p><input type="submit" value="Get authentication link"></p>
+                <input type="hidden" name="auth" value="1">
+            </div>
+        </form>
+    <?php
+
+	}
+
+} else if ( $php54up && $googledrivefail ) {
+
+        echo $googledrivefail;
+        echo '<hr>'
+            .'<h2>'. xelfinderAdminLang( 'COMPOSER_UPDATE' ) .'</h2>'
+            .'<div class="tips">'. xelfinderAdminLang( 'COMPOSER_UPDATE_HELP' ) .'</div>'
+            .'<p><a class="ui-btn" href="./index.php?page=vendorup">'. xelfinderAdminLang( 'COMPOSER_RUN_UPDATE' ) .'</a></p>';
+
 } else {
-	?>
-    <p>GoogleDrive Driver Require PHP >= 5.4 . Your PHP version is <?php echo PHP_VERSION; ?> .</p>
-	<?php
+    echo '<div class="error"><p>Update Vendor requires PHP >= 5.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
 }
 xoops_cp_footer();

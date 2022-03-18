@@ -3,6 +3,7 @@
  * X-elFinder module for XCL
  * @package    XelFinder
  * @version    XCL 2.3.1
+ * @author     Other authors Nuno Luciano (aka Gigamaster) 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2022 Author
  * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
@@ -16,15 +17,16 @@ if (! empty ( $_POST ['doupdate'] )) {
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<meta charset="<?php echo _CHARSET ?>"> 
+		<meta charset="<?php echo _CHARSET ?>">
+        <style>body{background:rgb(28, 32, 38);font-family:monospace;color:rgb(167, 175, 190);padding:1em;}</style>
 	</head>
 	<body>
 <?php
-	echo '<p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_STARTED' ).'</p>';
-	
+
 	while ( @ob_end_flush() );
 	flush ();
-	$pluginsDir = dirname ( dirname ( __FILE__ ) ) . '/plugins';
+	$pluginsDir = dirname(__FILE__, 2) . '/plugins';
+
 	$cwd = getcwd ();
 	chdir ( $pluginsDir );
 	
@@ -53,7 +55,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 	if ($php54) {
 	    $cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar remove --no-update kunalvarma05/dropbox-php-sdk';
 	} else {
-	    $cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar require --no-update kunalvarma05/dropbox-php-sdk';
+	    $cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar require kunalvarma05/dropbox-php-sdk ^0.2';
 	}
 	$cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar update  --no-ansi --no-interaction --prefer-dist --no-dev 2>&1';
 	//$cmds = array(
@@ -64,7 +66,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 		$handle = popen($cmd, 'r');
 		while ($res !== false && $handle && !feof($handle)) {
 			if ($res = fgets($handle, 80)) {
-				echo $res . '<br />';
+				echo $res . '<br>';
 				flush ();
 			}
 		}
@@ -72,16 +74,36 @@ if (! empty ( $_POST ['doupdate'] )) {
 	}
 	
 	chdir ( $cwd );
-	
+
+    echo '<p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_STARTED' ).'</p>';
 	echo '<p>'.xelfinderAdminLang ( 'COMPOSER_DONE_UPDATE' ).'</p>';
 	echo '</body></html>';
 	
 	exit ();
 }
+
+// RENDER
 xoops_cp_header ();
 include dirname ( __FILE__ ) . '/mymenu.php';
 
-echo '<h3>' . xelfinderAdminLang ( 'COMPOSER_UPDATE' ) . '</h3>';
+// Check if vendor file exists and print a message
+$filename = dirname(__FILE__, 2) . '/plugins/vendor/autoload.php';
+if ( ! file_exists( $filename ) ) {
+    $googledrivefail = sprintf( '<div class="error"><p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_ERROR' ).'</p></div><div class="message-warning"><p>'.xelfinderAdminLang ( 'COMPOSER_UPDATE_FAIL' ).'</p></div>', $filename );
+    } else {
+    $googledrivepass = sprintf('<div class="success">'.xelfinderAdminLang ( 'COMPOSER_UPDATE_SUCCESS' ).'</div>', $filename);
+}
+
+// Render
+echo '<h2>' . xelfinderAdminLang ( 'COMPOSER_UPDATE' ) . '</h2>';
+
+// COMPOSER UPDATE CHECK MESSAGE
+if ( $googledrivefail ) {
+    echo $googledrivefail;
+    } else {
+    echo $googledrivepass;
+}
+
 
 $php54up = false;
 
@@ -92,13 +114,19 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		$curver = '5.4';
 	}
 	$curverDig = str_replace('.', '', $curver);
+
+    // COMPOSER
+    echo '<hr>'
+    .'<h2>'. xelfinderAdminLang( 'COMPOSER_RUN_UPDATE' ) .'</h2>'
+    .'<div class="tips">'. xelfinderAdminLang( 'COMPOSER_UPDATE_HELP' ) .'<br>'. xelfinderAdminLang('COMPOSER_UPDATE_TIME') .'</div>'
 ?>
+
 <div>
-	<form action="./index.php?page=vendorup" method="post" id="xelfinder_vendorup_f"
-		target="composer_update">
-		<table><tr>
+	<form action="./index.php?page=vendorup" method="post" id="xelfinder_vendorup_f" target="composer_update">
+		<table>
+            <tr>
 			<td>
-				<p>PHP CLI Command<br /><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
+				<p>PHP CLI Command<br><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
 				<p><input type="text" name="phpcli" value="php" /></p>
 			</td>
 			<td>
@@ -111,15 +139,13 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 			</td>
 		</tr></table>
 		<p>
-		<input type="submit" name="doupdate" id="xelfinder_vendorup_s"
-			value="<?php echo xelfinderAdminLang('COMPOSER_DO_UPDATE'); ?>" />
-		<input type="hidden" name="php54" value="<?php echo $curver === '5.4' ? '1' : '0'; ?>" />
+		    <input type="submit" name="doupdate" id="xelfinder_vendorup_s" value="<?php echo xelfinderAdminLang('ADMENU_VENDORUPDATE'); ?>">
+		    <input type="hidden" name="php54" value="<?php echo $curver === '5.4' ? '1' : '0'; ?>">
 		</p>
 	</form>
 </div>
-<hr>
-<iframe id="ifm-xelfinder-vendorup" name="composer_update" scrolling="no"
-	style="border: none; width: 100%; height: 300px;"></iframe>
+
+<iframe id="ifm-xelfinder-vendorup" name="composer_update" title="Composer" style="display: block;border:none;width:80%;height:300px;margin:2em auto;overflow-y:scroll;"></iframe>
 
 <script>
 (function($){
@@ -145,8 +171,6 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 
 <?php
 } else {
-?>
-<p>vendor update needs for PHP >= 5.4 . Your PHP version is <?php echo PHP_VERSION; ?> .</p>
-<?php
+    echo '<div class="error"><p>Update Vendor requires PHP >= 5.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
 }
 xoops_cp_footer ();

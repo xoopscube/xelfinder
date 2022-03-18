@@ -17,15 +17,16 @@ define( $constpref.'_DESC' , 'Webベースのファイルマネージャ elFinde
 
 
 // admin menu
-define($constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;
-define($constpref.'_ADMENU_GOTO_MANAGER' ,  'ファイルマネージャ' ) ;
-define($constpref.'_ADMENU_DROPBOX' ,       'Dropbox App Token 取得' ) ;
-define($constpref.'_ADMENU_GOOGLEDRIVE' ,   'GoogleDrive Token 取得' ) ;
-define($constpref.'_ADMENU_VENDORUPDATE' ,  'vendor アップデート' ) ;
-define($constpref.'_ADMENU_MYLANGADMIN' ,   '言語定数管理' ) ;
-define($constpref.'_ADMENU_MYTPLSADMIN' ,   'テンプレート管理' ) ;
-define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
-define($constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
+define( $constpref.'_ADMENU_INDEX_CHECK' ,   '設定の確認' ) ;
+define( $constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;
+define( $constpref.'_ADMENU_GOTO_MANAGER' ,  'ファイルマネージャ' ) ;
+define( $constpref.'_ADMENU_DROPBOX' ,       'Dropbox App Token 取得' ) ;
+define( $constpref.'_ADMENU_GOOGLEDRIVE' ,   'GoogleDrive Token 取得' ) ;
+define( $constpref.'_ADMENU_VENDORUPDATE' ,  'vendor アップデート' ) ;
+define( $constpref.'_ADMENU_MYLANGADMIN' ,   '言語定数管理' ) ;
+define( $constpref.'_ADMENU_MYTPLSADMIN' ,   'テンプレート管理' ) ;
+define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
+define( $constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
 
 // configurations
 define( $constpref.'_MANAGER_TITLE' ,           'マネージャのページタイトル' );
@@ -41,10 +42,10 @@ define( $constpref.'_DISABLE_WRITES_USER' ,     '登録ユーザー書き込み�
 define( $constpref.'_DISABLE_WRITES_USER_DESC', '登録ユーザー向けにグループ毎無効コマンドに指定した無効コマンドに合わせ、書き込み系コマンドをすべて追加します。' );
 define( $constpref.'_MAIL_NOTIFY_GUEST' ,       'メール通知(ゲスト)' );
 define( $constpref.'_MAIL_NOTIFY_GUEST_DESC',   'ゲストによるファイル追加を管理グループメンバーにメール通知します。' );
-define( $constpref.'_ENABLE_IMAGICK_PS' ,      'ImageMagickのPostScript処理有効' );
-define( $constpref.'_ENABLE_IMAGICK_PS_DESC',  '<a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscriptの脆弱性</a>が修正されている場合は、「はい」を選択することでImageMagickでPostScript関連の処理を有効にできます。' );
-define( $constpref.'_USE_SHARECAD_PREVIEW' ,      'ShareCAD プレビュー有効' );
-define( $constpref.'_USE_SHARECAD_PREVIEW_DESC',  'ShareCAD.org を利用しプレビュー可能なファイルタイプを拡大します。ShareCAD プレビュー利用時は ShareCAD.org へコンテンツ URL を通知します。' );
+define( $constpref.'_ENABLE_IMAGICK_PS' ,       'ImageMagickのPostScript処理有効' );
+define( $constpref.'_ENABLE_IMAGICK_PS_DESC',   '<a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscriptの脆弱性</a>が修正されている場合は、「はい」を選択することでImageMagickでPostScript関連の処理を有効にできます。' );
+define( $constpref.'_USE_SHARECAD_PREVIEW' ,    'ShareCAD プレビュー有効' );
+define( $constpref.'_USE_SHARECAD_PREVIEW_DESC','ShareCAD.org を利用しプレビュー可能なファイルタイプを拡大します。ShareCAD プレビュー利用時は ShareCAD.org へコンテンツ URL を通知します。' );
 define( $constpref.'_USE_GOOGLE_PREVIEW' ,      'Google Docs プレビュー有効' );
 define( $constpref.'_USE_GOOGLE_PREVIEW_DESC',  'Google Docs を利用しプレビュー可能なファイルタイプを拡大します。Google Docs プレビュー利用時に Google Docs へコンテンツ URL を通知します。' );
 define( $constpref.'_USE_OFFICE_PREVIEW' ,      'Office Online プレビュー有効' );
@@ -181,8 +182,8 @@ define( $constpref.'_DISABLE_PATHINFO_DESC' ,   '環境変数 "PATH_INFO" が利
 define( $constpref.'_EDIT_DISABLE_LINKED' ,     '[xelfinder_db] リンク済みファイルの書き込み禁止' );
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'リンク切れや不用意な上書きを防止するためにリンク・参照されたファイルを自動的に書き込み禁止に設定します。' );
 
-define( $constpref.'_CHECK_NAME_VIEW' ,     '[xelfinder_db] ファイル参照URLのファイル名の照合' );
-define( $constpref.'_CHECK_NAME_VIEW_DESC' ,'ファイル参照用URLのファイル名を照合し登録されたファイル名と合致しない場合は "404 Not Found" エラーを返します。' );
+define( $constpref.'_CHECK_NAME_VIEW' ,         '[xelfinder_db] ファイル参照URLのファイル名の照合' );
+define( $constpref.'_CHECK_NAME_VIEW_DESC' ,    'ファイル参照用URLのファイル名を照合し登録されたファイル名と合致しない場合は "404 Not Found" エラーを返します。' );
 
 define( $constpref.'_CONNECTOR_URL' ,           '外部またはセキュア接続のコネクタURL（任意）' );
 define( $constpref.'_CONNECTOR_URL_DESC' ,      '外部サイトのコネクタに接続する場合やバックエンドとの通信のみセキュアな環境を利用する場合に connector.php の URL を指定してください。' );
@@ -228,12 +229,17 @@ define( $constpref.'_DROPBOX_STEP3' ,        'Step 3: 取得完了。一般設�
 define( $constpref.'_DROPBOX_SET_PREF' ,     '次の値を一般設定の各項目に設定してください。');
 
 // admin/googledrive.php
-define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Google Drive Token の取得');
+define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Google Drive API' );
 
 // admin/composer_update.php
-define( $constpref.'_COMPOSER_UPDATE' ,       'plugins/vendor アップデート(composer update)');
-define( $constpref.'_COMPOSER_DO_UPDATE' ,    'アップデートを実行する(ある程度時間が掛かります)');
-define( $constpref.'_COMPOSER_UPDATE_STARTED','アップデートを開始しました。「アップデートが完了しました。」と表示されるまでお待ち下さい...');
-define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'アップデートが完了しました。');
+define( $constpref.'_COMPOSER_UPDATE' ,       'Vendor アップデート- Composer' );
+define( $constpref.'_COMPOSER_RUN_UPDATE' ,    'アップデートを実行する' );
+define( $constpref.'_COMPOSER_UPDATE_STARTED','アップデートを開始しました。「アップデートが完了しました。」と表示されるまでお待ち下さい...' );
+define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'アップデートが完了しました。' );
+define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'ベンダーファイルが存在します.' );
+define( $constpref.'_COMPOSER_UPDATE_ERROR' , 'ドライバがインストールされていないか、正しくインストールされていない可能性があります。' );
+define( $constpref.'_COMPOSER_UPDATE_FAIL',   'ファイルが存在しません : %s ' );
+define( $constpref.'_COMPOSER_UPDATE_SUCCESS','ベンダーファイルが存在します : %s ' );
+define( $constpref.'_COMPOSER_UPDATE_TIME' ,  'インターネット接続によっては時間がかかる場合があります' );
 
 }

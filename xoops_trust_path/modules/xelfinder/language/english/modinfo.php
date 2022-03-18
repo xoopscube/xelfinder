@@ -13,10 +13,11 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_DESC', 'The module which uses the file manager elFinder of a Web base as an image manager.' );
 
 // admin menu
-define( $constpref.'_ADMENU_GOTO_MODULE' , 'Goto Module' ) ;
-define( $constpref.'_ADMENU_GOTO_MANAGER' ,'FileManager' ) ;
-define( $constpref.'_ADMENU_DROPBOX' ,     'Get Dropbox App Token' ) ;
-define( $constpref.'_ADMENU_GOOGLEDRIVE' , 'Get GoogleDrive Token' ) ;
+define( $constpref.'_ADMENU_INDEX_CHECK' , 'Check Setup' ) ;
+define( $constpref.'_ADMENU_GOTO_MODULE' , 'View Module' ) ;
+define( $constpref.'_ADMENU_GOTO_MANAGER' ,'File Manager' ) ;
+define( $constpref.'_ADMENU_DROPBOX' ,     'Dropbox App Token' ) ;
+define( $constpref.'_ADMENU_GOOGLEDRIVE' , 'Google Drive API' ) ;
 define( $constpref.'_ADMENU_VENDORUPDATE' ,'Update vendor' ) ;
 define( $constpref.'_ADMENU_MYLANGADMIN',  'Languages');
 define( $constpref.'_ADMENU_MYTPLSADMIN',  'Templates');
@@ -29,16 +30,16 @@ define( $constpref.'_MANAGER_TITLE_DESC' ,      '' );
 define( $constpref.'_VOLUME_SETTING' ,          'Volume Drivers' );
 define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin ui-btn" type="button" data-module="xelfinder" data-help-article="#help-volume" title="Help Volume"><span class="ui-icon ui-icon-help"></span></button> Configuration options separated by a new line<br><pre>[Module directory name]:[Plugin name]:[Saved files directory path]:[View name]:[Options]</pre>' );
 define( $constpref.'_SHARE_FOLDER' ,            'Shared Folder' );
-define( $constpref.'_DISABLED_CMDS_BY_GID' ,    'Group policy to disable cmds' );
+define( $constpref.'_DISABLED_CMDS_BY_GID' ,    'Group policy - disable cmds' );
 define( $constpref.'_DISABLED_CMDS_BY_GID_DESC','[GroupID]= Disabled cmds (comma-separated)]. Delimiter ID with ":" colon<br>Command list: archive, chmod, cut, duplicate, edit, empty, extract, mkdir, mkfile, paste, perm, put, rename, resize, rm, upload etc...' );
 define( $constpref.'_DISABLE_WRITES_GUEST' ,    'Disable writing cmds to guest' );
 define( $constpref.'_DISABLE_WRITES_GUEST_DESC','disable writing and modifying, while allowing readingAll writing commands are added to the disabled commands to guests.' );
 define( $constpref.'_DISABLE_WRITES_USER' ,     'Disable writing cmds to user' );
 define( $constpref.'_DISABLE_WRITES_USER_DESC', 'All writing commands are added to the disabled commands to registed users.' );
-define( $constpref.'_ENABLE_IMAGICK_PS' ,      'Enable PostScript of ImageMagick' );
-define( $constpref.'_ENABLE_IMAGICK_PS_DESC',  'If <a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscript vulnerabilities</a> has been fixed, you can enable PostScript related processing with ImageMagick by selecting "Yes".' );
-define( $constpref.'_USE_SHARECAD_PREVIEW' ,      'Enable ShareCAD preview' );
-define( $constpref.'_USE_SHARECAD_PREVIEW_DESC',  'Use ShareCAD to expand preview file types. When ShareCAD Preview is used, it notifies the content URL to ShareCAD.org.' );
+define( $constpref.'_ENABLE_IMAGICK_PS' ,       'Enable PostScript of ImageMagick' );
+define( $constpref.'_ENABLE_IMAGICK_PS_DESC',   'If <a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscript vulnerabilities</a> has been fixed, you can enable PostScript related processing with ImageMagick by selecting "Yes".' );
+define( $constpref.'_USE_SHARECAD_PREVIEW' ,    'Enable ShareCAD preview' );
+define( $constpref.'_USE_SHARECAD_PREVIEW_DESC','Use ShareCAD to expand preview file types. When ShareCAD Preview is used, it notifies the content URL to ShareCAD.org.' );
 define( $constpref.'_USE_GOOGLE_PREVIEW' ,      'Enable Google Docs preview' );
 define( $constpref.'_USE_GOOGLE_PREVIEW_DESC',  'Use Google Docs to expand preview file types. When Google Docs Preview is used, it notifies the content URL to Google Docs.' );
 define( $constpref.'_USE_OFFICE_PREVIEW' ,      'Enable Office Online preview' );
@@ -54,7 +55,7 @@ define( $constpref.'_FTP_HOST_DESC' ,           '' );
 define( $constpref.'_FTP_PORT' ,                'FTP port' );
 define( $constpref.'_FTP_PORT_DESC' ,           'default: 21' );
 define( $constpref.'_FTP_PATH' ,                'Directory as root' );
-define( $constpref.'_FTP_PATH_DESC' ,           'FTP configuration is also used for "ftp" plug-volume driver. Please be blank if you set only for "ftp" plug-in.' );
+define( $constpref.'_FTP_PATH_DESC' ,           'FTP configuration is also used for "ftp" plug-volume driver. Leave blank only for "ftp" plug-in.' );
 define( $constpref.'_FTP_USER' ,                'FTP user name' );
 define( $constpref.'_FTP_USER_DESC' ,           '' );
 define( $constpref.'_FTP_PASS' ,                'FTP password' );
@@ -62,29 +63,29 @@ define( $constpref.'_FTP_PASS_DESC' ,           '' );
 define( $constpref.'_FTP_SEARCH' ,              'FTP volume integration in Search Results' );
 define( $constpref.'_FTP_SEARCH_DESC' ,         'Some firewalls or network routers can disconnect connections and show the “read timed out” error if the server is taking longer to respond and send information.' );
 define( $constpref.'_BOXAPI_ID' ,               'Box API OAuth2 client_id' );
-define( $constpref.'_BOXAPI_ID_DESC' ,          'Box <a href="https://app.box.com/developers/services" target="_blank">API Console ↗ 🌐</a>' );
+define( $constpref.'_BOXAPI_ID_DESC' ,          'Sign in to <a href="https://app.box.com/developers/services" target="_blank">Box API Console ↗ 🌐</a>' );
 define( $constpref.'_BOXAPI_SECRET' ,           'Box API OAuth2 client_secret' );
-define( $constpref.'_BOXAPI_SECRET_DESC' ,      'To use Box as a network volume, set the redirect_url in the Box API application configuration section :<br><small><pre>'.str_replace('http://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php</pre></small><br>https: Required. Optional paths after domain can be omitted.' );
+define( $constpref.'_BOXAPI_SECRET_DESC' ,      'To use Box as a network volume, set the redirect_url in the Box API application configuration section :<br><small><pre>'.str_replace('http://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php</pre></small><br>HTTPS is required. Optional paths after domain can be omitted.' );
 define( $constpref.'_GOOGLEAPI_ID' ,            'Google API Client ID' );
-define( $constpref.'_GOOGLEAPI_ID_DESC' ,       'Google <a href="https://console.developers.google.com" target="_blank">API Console ↗ 🌐</a>' );
+define( $constpref.'_GOOGLEAPI_ID_DESC' ,       'Sign in to <a href="https://console.developers.google.com" target="_blank">Google API Console ↗ 🌐</a>' );
 define( $constpref.'_GOOGLEAPI_SECRET' ,        'Google API Client Secret' );
 define( $constpref.'_GOOGLEAPI_SECRET_DESC' ,   'To use Google Drive as a network volume, set redirect_uri in Google Developer Console :<br><small><pre>'.XOOPS_URL.'/modules/'.$mydirname.'/connector.php?cmd=netmount&protocol=googledrive&host=1</pre></small>' );
 define( $constpref.'_ONEDRIVEAPI_ID' ,          'OneDrive API Application ID' );
-define( $constpref.'_ONEDRIVEAPI_ID_DESC' ,     'Azure Active Directory : <a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps" target="_blank">Registered Apps ↗ 🌐</a>' );
+define( $constpref.'_ONEDRIVEAPI_ID_DESC' ,     'Sign in to <a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps" target="_blank">Azure Active Directory Registered Apps ↗ 🌐</a>' );
 define( $constpref.'_ONEDRIVEAPI_SECRET' ,      'OneDrive API Password' );
 define( $constpref.'_ONEDRIVEAPI_SECRET_DESC' , 'To use OneDrive as a network volume, Use this redirect URL in the OneDrive API application settings :<br><small><pre>'.XOOPS_URL.'/modules/'.$mydirname.'/connector.php/netmount/onedrive/1</pre></small>' );
-define( $constpref.'_DROPBOX_TOKEN' ,           'Dropbox.com Token' );
-define( $constpref.'_DROPBOX_TOKEN_DESC' ,      'Sign in to Dropbox : <a href="https://www.dropbox.com/developers" target="_blank">Developers ↗ 🌐</a>' );
+define( $constpref.'_DROPBOX_TOKEN' ,           'Dropbox.com App key' );
+define( $constpref.'_DROPBOX_TOKEN_DESC' ,      'Sign in to <a href="https://www.dropbox.com/developers" target="_blank">Dropbox Developers ↗ 🌐</a>' );
 define( $constpref.'_DROPBOX_SECKEY' ,          'Dropbox.com App secret' );
-define( $constpref.'_DROPBOX_SECKEY_DESC' ,     'The app secret found in the settings page of your Dropbox application.' );
-define( $constpref.'_DROPBOX_ACC_TOKEN' ,       'Dropbox.com App token' );
-define( $constpref.'_DROPBOX_ACC_TOKEN_DESC' ,  'The generated access token for the shared Dropbox volume. Sign in to Dropbox.com <a href="https://www.dropbox.com/developers/apps" target="_blank">Developers-Apps ↗ 🌐</a>.' );
-define( $constpref.'_DROPBOX_ACC_SECKEY' ,      'Dropxbox OAuth 1 - [ Blank for OAuth2 ]' );
-define( $constpref.'_DROPBOX_ACC_SECKEY_DESC' , '<a href="https://www.dropbox.com/developers/reference/migration-guideMigrate access tokens or re-authenticate with a new permission API v1 → v2' );
+define( $constpref.'_DROPBOX_SECKEY_DESC' ,     'The App secret found in the settings page of your Dropbox application. OAuth 2 Redirect URIs :<br><small><pre>'.XOOPS_URL.'/modules/'.$mydirname.'/connector.php?cmd=netmount&protocol=dropbox2&host=1</pre></small>' );
+define( $constpref.'_DROPBOX_ACC_TOKEN' ,       'Dropbox.com App secret token' );
+define( $constpref.'_DROPBOX_ACC_TOKEN_DESC' ,  'The generated access token for the shared Dropbox volume.<br>Sign in to <a href="https://www.dropbox.com/developers/apps" target="_blank">Dropbox.com Developers-Apps ↗ 🌐</a>' );
+define( $constpref.'_DROPBOX_ACC_SECKEY' ,      'Dropxbox OAuth 1 only [ blank for OAuth2 ]' );
+define( $constpref.'_DROPBOX_ACC_SECKEY_DESC' , 'Migrate access tokens or re-authenticate with a new permission API v1 → v2<br>Leave this field empty and use the new API v2 app key.' );
 define( $constpref.'_DROPBOX_NAME' ,            'Shared Dropbox volume display name' );
-define( $constpref.'_DROPBOX_NAME_DESC' ,       'Unlike mount of network volume, shared Dropbox volume is displayed on all the users.' );
+define( $constpref.'_DROPBOX_NAME_DESC' ,       'Unlike mount of network volume, shared Dropbox name is available to all users.' );
 define( $constpref.'_DROPBOX_PATH' ,            'Root pass of shared Dropbox' );
-define( $constpref.'_DROPBOX_PATH_DESC' ,       'The path of the class which may generally be indicated in shared Dropbox volume is specified. (example:  "/Public")<br>A Dropbox setup is "dropbox" of a volume driver. It is used also for plugin.<br>"dropbox" When you set to plug-in, please make a root pass into a blank.' );
+define( $constpref.'_DROPBOX_PATH_DESC' ,       'The path generally indicated in shared Dropbox volume. (example:  "/Public")<br>A Dropbox setup is "dropbox" of a volume driver. It is used also for plugin.<br>"dropbox" When you set to plug-in, please make a root pass into a blank.' );
 define( $constpref.'_DROPBOX_HIDDEN_EXT' ,      'Shared Dropbox hidden files' );
 define( $constpref.'_DROPBOX_HIDDEN_EXT_DESC' , 'The file (backward match of a file name) displayed only on administrators is specified by comma separated values.<br>It is aimed at a folder when an end is "/".' );
 define( $constpref.'_DROPBOX_WRITABLE_GROUPS' , 'Groups which permits full access to Share Dropbox' );
@@ -119,26 +120,26 @@ define( $constpref.'_THUMBNAIL_SIZE' ,          '[xelfinder_db] Thumbnail size o
 define( $constpref.'_THUMBNAIL_SIZE_DESC' ,     'The default value (px) of the thumbnail size at picture insertion by BBcode.' );
 define( $constpref.'_DEFAULT_ITEM_PERM' ,       '[xelfinder_db] Permission of new items' );
 define( $constpref.'_DEFAULT_ITEM_PERM_DESC' ,  'Permission is three-digit hexadecimal.[File owner][group][Guest]<br>4bit binary number each digit is [Hide][Read][Write][Unlock]<br>744 Owner: 7 =-rwu, group 4 =-r--, Guest 4 =-r--' );
-define( $constpref.'_USE_USERS_DIR' ,           '[xelfinder_db] Use of the holder for each user' );
+define( $constpref.'_USE_USERS_DIR' ,           '[xelfinder_db] Use of account holder for each user' );
 define( $constpref.'_USE_USERS_DIR_DESC' ,      '' );
-define( $constpref.'_USERS_DIR_PERM' ,          '[xelfinder_db] Permission of "holder for each user"' );
+define( $constpref.'_USERS_DIR_PERM' ,          '[xelfinder_db] Permission of "account holder for each user"' );
 define( $constpref.'_USERS_DIR_PERM_DESC' ,     'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 7cc: Owner 7 = -rwu, Group c = hr--, Guest c = hr--' );
-define( $constpref.'_USERS_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "holder by user"' );
+define( $constpref.'_USERS_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "account holder by user"' );
 define( $constpref.'_USERS_DIR_ITEM_PERM_DESC' ,'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 7cc: Owner 7 = -rwu, Group c = hr--, Guest c = hr--' );
-define( $constpref.'_USE_GUEST_DIR' ,           '[xelfinder_db] Use the holder for guest' );
+define( $constpref.'_USE_GUEST_DIR' ,           '[xelfinder_db] Use the account holder for guest' );
 define( $constpref.'_USE_GUEST_DIR_DESC' ,      '' );
-define( $constpref.'_GUEST_DIR_PERM' ,          '[xelfinder_db] Permission of "holder for guest"' );
+define( $constpref.'_GUEST_DIR_PERM' ,          '[xelfinder_db] Permission of "account holder for guest"' );
 define( $constpref.'_GUEST_DIR_PERM_DESC' ,     'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 766: Owner 7 = -rwu, Group 6 = -rw-, Guest 6 = -rw-' );
-define( $constpref.'_GUEST_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "holder for guest"' );
+define( $constpref.'_GUEST_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "account holder for guest"' );
 define( $constpref.'_GUEST_DIR_ITEM_PERM_DESC' ,'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 744: Owner 7 = -rwu, Group 4 = -r--, Guest 4 = -r--' );
-define( $constpref.'_USE_GROUP_DIR' ,           '[xelfinder_db] Use the holder for each group' );
+define( $constpref.'_USE_GROUP_DIR' ,           '[xelfinder_db] Use the account holder for each group' );
 define( $constpref.'_USE_GROUP_DIR_DESC' ,      '' );
-define( $constpref.'_GROUP_DIR_PARENT' ,        '[xelfinder_db] Parent holder name for "holder for each group"' );
+define( $constpref.'_GROUP_DIR_PARENT' ,        '[xelfinder_db] Parent holder name for "account holder for each group"' );
 define( $constpref.'_GROUP_DIR_PARENT_DESC' ,   '' );
 define( $constpref.'_GROUP_DIR_PARENT_NAME' ,   'For group');
-define( $constpref.'_GROUP_DIR_PERM' ,          '[xelfinder_db] Permission of "holder for each group"' );
+define( $constpref.'_GROUP_DIR_PERM' ,          '[xelfinder_db] Permission of "account holder for each group"' );
 define( $constpref.'_GROUP_DIR_PERM_DESC' ,     'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 768: Owner 7 = -rwu, Group 6 = -rw-, Guest 8 = h---' );
-define( $constpref.'_GROUP_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "holder for each group"' );
+define( $constpref.'_GROUP_DIR_ITEM_PERM' ,     '[xelfinder_db] Permission of the new items in "account holder for each group"' );
 define( $constpref.'_GROUP_DIR_ITEM_PERM_DESC' ,'The setting here is referred to only when it is created. Please change after it is created directly in the elFinder. <br>ex. 748: Owner 7 = -rwu, Group 4 = -r--, Guest 8 = h---' );
 
 define( $constpref.'_UPLOAD_ALLOW_ADMIN' ,      '[xelfinder_db] Upload allow MIME types for Admin' );
@@ -161,33 +162,33 @@ define( $constpref.'_UPLOAD_ALLOW_USER' ,       '[xelfinder_db] Upload allow MIM
 define( $constpref.'_UPLOAD_ALLOW_USER_DESC' ,  '' );
 define( $constpref.'_AUTO_RESIZE_USER' ,        '[xelfinder_db] Auto resize for Registed user (px)' );
 define( $constpref.'_AUTO_RESIZE_USER_DESC',    '' );
-define( $constpref.'_UPLOAD_MAX_USER' ,         '[xelfinder_db] Allowed max filesize for user' );
+define( $constpref.'_UPLOAD_MAX_USER' ,         '[xelfinder_db]max filesize Allowed  for user' );
 define( $constpref.'_UPLOAD_MAX_USER_DESC',     '' );
 
-define( $constpref.'_UPLOAD_ALLOW_GUEST' ,      '[xelfinder_db] Upload allow MIME types for Guest' );
+define( $constpref.'_UPLOAD_ALLOW_GUEST' ,      '[xelfinder_db] Mime types allowed for Guest upload' );
 define( $constpref.'_UPLOAD_ALLOW_GUEST_DESC' , '' );
 define( $constpref.'_AUTO_RESIZE_GUEST' ,       '[xelfinder_db] Auto resize for Guest (px)' );
 define( $constpref.'_AUTO_RESIZE_GUEST_DESC',   '' );
-define( $constpref.'_UPLOAD_MAX_GUEST' ,        '[xelfinder_db] Allowed max filesize for Guest' );
+define( $constpref.'_UPLOAD_MAX_GUEST' ,        '[xelfinder_db] max filesize Allowed for Guest' );
 define( $constpref.'_UPLOAD_MAX_GUEST_DESC',    '' );
 
-define( $constpref.'_DISABLE_PATHINFO' ,        '[xelfinder_db] Not use PathInfo of file reference URL' );
-define( $constpref.'_DISABLE_PATHINFO_DESC' ,   'The server which cannot use environment variable "PATH_INFO" needs to choose "Yes".' );
+define( $constpref.'_DISABLE_PATHINFO' ,        '[xelfinder_db] Disable "PATH_INFO" in file reference URL' );
+define( $constpref.'_DISABLE_PATHINFO_DESC' ,   'Select "Yes" for servers where the environment variable "PATH_INFO" is not available.' );
 
-define( $constpref.'_EDIT_DISABLE_LINKED' ,     '[xelfinder_db] Write-protect of linked file' );
-define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'Write-protect automatically of referenced linked files  for order to prevent inadvertent overwriting or broken links.' );
+define( $constpref.'_EDIT_DISABLE_LINKED' ,     '[xelfinder_db] Write-protected linked files' );
+define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'Automatically enables "write-protection" of files to prevent broken links and inadvertent overwriting.' );
 
-define( $constpref.'_CHECK_NAME_VIEW' ,     '[xelfinder_db] Matching the file name of the file reference URL' );
-define( $constpref.'_CHECK_NAME_VIEW_DESC' ,'If the file name of the file reference URL is matched and does not match the registered file name, "404 Not Found" error is returned.' );
+define( $constpref.'_CHECK_NAME_VIEW' ,         '[xelfinder_db] Matching of file names in file reference URLs.' );
+define( $constpref.'_CHECK_NAME_VIEW_DESC' ,    'If the file name in the file reference URL does not match the registered file name, a "404 Not Found" error is returned.' );
 
-define( $constpref.'_CONNECTOR_URL' ,           'Connector URL of ext or secure （Optional）' );
-define( $constpref.'_CONNECTOR_URL_DESC' ,      'URL of connector.php, when only communication with the case where it connects with the connector of an external site, or a back end uses secure environment.' );
+define( $constpref.'_CONNECTOR_URL' ,           'External or secure connection connector URL (optional)' );
+define( $constpref.'_CONNECTOR_URL_DESC' ,      'Specify the URL of connector.php when connecting to an external site or when using a secure environment only for communication with the backend.' );
 
-define( $constpref.'_CONN_URL_IS_EXT',          'Is external connector URL' );
-define( $constpref.'_CONN_URL_IS_EXT_DESC',     '"Yes", when connector URL which carried out arbitrary specification is an external site, in the case of URL to which connector URL makes SSL connection only of the back end communication, please choose "no".<br>When connecting it with the connector of an external site, the origin domain here needs to be permitted at the partner point site.' );
+define( $constpref.'_CONN_URL_IS_EXT',          'External connector URL' );
+define( $constpref.'_CONN_URL_IS_EXT_DESC',     'Select "Yes" if the specified connector URL is an external site or<br>select "No" if the connector URL is SSL only for back-end communication.<br>When connecting to an external site, this site must be permitted on the other site.' );
 
-define( $constpref.'_ALLOW_ORIGINS',            'Domain origins to permit' );
-define( $constpref.'_ALLOW_ORIGINS_DESC',       'The domain origin (example: "http://example.com" the last slash is unnecessary) of the external site which permits connection to the connector of this site is set up by line pause.<br>In the case of URL to which connector URL makes SSL connection only of the back end communication, it is necessary to specify " <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> ".' );
+define( $constpref.'_ALLOW_ORIGINS',            'Allow domain origin' );
+define( $constpref.'_ALLOW_ORIGINS_DESC',       'Set the domains of external sites allowed to connect to this site, separated by newlines, example : "https://example.com" (without the last slash).<br>If the connector URL is a SSL connection only for back-end communication, it is necessary to specify " <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> ".' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'Local for unzip' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'Local (LANG) for unzip exec' );
@@ -215,7 +216,7 @@ define( $constpref.'_DEBUG_DESC' ,              'If it is set in a debug mode, a
 
 // admin/dropbox.php
 define( $constpref.'_DROPBOX_STEP1' ,        'Step 1: Make App');
-define( $constpref.'_DROPBOX_GOTO_APP' ,     'Please create App at the following link place (Dropbox.com), acquire App key and App secre, and set to "%s" and "%s" of Preferences.');
+define( $constpref.'_DROPBOX_GOTO_APP' ,     'Please create App at the following link place (Dropbox.com), acquire App key and App secret, and set to "%s" and "%s" of Preferences.');
 define( $constpref.'_DROPBOX_GET_TOKEN' ,    'Get "Dropbox App Token"');
 define( $constpref.'_DROPBOX_STEP2' ,        'Step 2: Go to Dropbox and approves');
 define( $constpref.'_DROPBOX_GOTO_CONFIRM' , 'Please move on to the following link place (Dropbox.com), and approve an application.');
@@ -224,12 +225,16 @@ define( $constpref.'_DROPBOX_STEP3' ,        'Step 3: Completed. It sets to Pref
 define( $constpref.'_DROPBOX_SET_PREF' ,     'Please set the following value as each item of Preferences.');
 
 // admin/googledrive.php
-define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Get "Google Drive Token"');
+define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Google Drive API');
 
 // admin/composer_update.php
-define( $constpref.'_COMPOSER_UPDATE' ,       'Update to plugins/vendor (composer update)');
-define( $constpref.'_COMPOSER_DO_UPDATE' ,    'Do update now(It will take some time)');
-define( $constpref.'_COMPOSER_UPDATE_STARTED','It was to begin the update. Please wait until "Update was completed." is displayed ...');
-define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'Update was completed.');
-
+define( $constpref.'_COMPOSER_UPDATE' ,       'Update Vendor - Composer');
+define( $constpref.'_COMPOSER_RUN_UPDATE' ,   'Run Composer Update');
+define( $constpref.'_COMPOSER_UPDATE_STARTED','Update started. Please wait until the system displays the message "Update was completed" ...');
+define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'The Vendor Update was completed.');
+define( $constpref.'_COMPOSER_UPDATE_ERROR' , 'The driver might not be installed, or it might not be installed correctly!');
+define( $constpref.'_COMPOSER_UPDATE_FAIL',   'The Vendor file does not exist : %s ');
+define( $constpref.'_COMPOSER_UPDATE_SUCCESS','The Vendor file exists  %s .');
+define( $constpref.'_COMPOSER_UPDATE_TIME' ,  'This can take some time depending on the Internet connection !');
+define( $constpref.'_COMPOSER_UPDATE_HELP' ,  'Run composer to update the required packages and re-generate a composer lock file.');
 }

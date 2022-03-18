@@ -3,6 +3,10 @@
 $constpref = '_MI_' . strtoupper( $mydirname );
 
 $adminmenu = [
+    [
+        'title' => constant( $constpref . '_ADMENU_INDEX_CHECK' ),
+        'link'  => 'admin/index.php',
+    ],
 	[
 		'title' => constant( $constpref . '_ADMENU_GOTO_MODULE' ),
 		'link'  => 'index.php',
