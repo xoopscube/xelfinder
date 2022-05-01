@@ -13,9 +13,6 @@ define( $constpref.'_LOADED' , 1 ) ;
 
 define( $constpref.'_DESC' , 'Webベースのファイルマネージャ elFinder をイメージマネージャとして利用するモジュール');
 
-
-
-
 // admin menu
 define( $constpref.'_ADMENU_INDEX_CHECK' ,   '設定の確認' ) ;
 define( $constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;
@@ -32,7 +29,7 @@ define( $constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
 define( $constpref.'_MANAGER_TITLE' ,           'マネージャのページタイトル' );
 define( $constpref.'_MANAGER_TITLE_DESC' ,      '' );
 define( $constpref.'_VOLUME_SETTING' ,          'ボリュームドライバ' );
-define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin ui-btn" type="button" data-module="xelfinder" data-help-article="#help-volume" title="Help Volume"><span class="ui-icon ui-icon-help"></span></button> 設定オプションは改行で区切られる。<br><pre>[モジュールディレクトリ名]:[プラグイン名]:[ファイル格納ディレクトリ]:[表示名]:[オプション]</pre>' );
+define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin button" type="button" data-module="xelfinder" data-help-article="#help-volume" title="Help Volume"><b>?</b></button> 設定オプションは改行で区切られる。<br><pre>[モジュールディレクトリ名]:[プラグイン名]:[ファイル格納ディレクトリ]:[表示名]:[オプション]</pre>' );
 define( $constpref.'_SHARE_FOLDER' ,            '共有フォルダ' );
 define( $constpref.'_DISABLED_CMDS_BY_GID' ,    'グループ毎無効コマンド' );
 define( $constpref.'_DISABLED_CMDS_BY_GID_DESC','グループ毎(管理者を除く)に無効にするコマンドを [グループID]=[無効コマンド(カンマ区切り)] として ":" で区切って指定する。<br>コマンド名: archive, chmod, cut, duplicate, edit, empty, extract, mkdir, mkfile, paste, perm, put, rename, resize, rm, upload など' );
@@ -49,7 +46,7 @@ define( $constpref.'_USE_SHARECAD_PREVIEW_DESC','ShareCAD.org を利用しプレ
 define( $constpref.'_USE_GOOGLE_PREVIEW' ,      'Google Docs プレビュー有効' );
 define( $constpref.'_USE_GOOGLE_PREVIEW_DESC',  'Google Docs を利用しプレビュー可能なファイルタイプを拡大します。Google Docs プレビュー利用時に Google Docs へコンテンツ URL を通知します。' );
 define( $constpref.'_USE_OFFICE_PREVIEW' ,      'Office Online プレビュー有効' );
-define( $constpref.'_USE_OFFICE_PREVIEW_DESC',  'Office Online  を利用しプレビュー可能なファイルタイプを拡大します。Office Online プレビュー利用時は products.office.com へコンテンツ URL を通知します。' );
+define( $constpref.'_USE_OFFICE_PREVIEW_DESC',  '注：Microsoftは、組み込みのテレメトリクライアントを介して使用データを収集するだけでなく、ConnectedServicesの個々の使用を記録および保存します。 コンテンツのURLはproducts.office.comによって収集されます' );
 define( $constpref.'_MAIL_NOTIFY_GROUP' ,       'メール通知(グループ)' );
 define( $constpref.'_MAIL_NOTIFY_GROUP_DESC',   '選択したグループに属するユーザーによるファイル追加を管理グループメンバーにメール通知します。' );
 define( $constpref.'_FTP_NAME' ,                'FTP ネットボリューム表示名' );
@@ -236,7 +233,6 @@ define( $constpref.'_COMPOSER_UPDATE' ,       'Vendor アップデート- Compos
 define( $constpref.'_COMPOSER_RUN_UPDATE' ,    'アップデートを実行する' );
 define( $constpref.'_COMPOSER_UPDATE_STARTED','アップデートを開始しました。「アップデートが完了しました。」と表示されるまでお待ち下さい...' );
 define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'アップデートが完了しました。' );
-define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'ベンダーファイルが存在します.' );
 define( $constpref.'_COMPOSER_UPDATE_ERROR' , 'ドライバがインストールされていないか、正しくインストールされていない可能性があります。' );
 define( $constpref.'_COMPOSER_UPDATE_FAIL',   'ファイルが存在しません : %s ' );
 define( $constpref.'_COMPOSER_UPDATE_SUCCESS','ベンダーファイルが存在します : %s ' );

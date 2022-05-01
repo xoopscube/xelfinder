@@ -17,31 +17,29 @@ if ( ! file_exists( $langmanpath ) ) {
 require_once( $langmanpath );
 $langman = D3LanguageManager::getInstance();
 $langman->read( 'modinfo.php', $mydirname, $mytrustdirname, false );
-
 $constpref = '_MI_' . strtoupper( $mydirname );
 
-$modversion['name'] = 'xelFinder';
-//$modversion['name'] = $constpref.'_NAME') ;
-$modversion['description']      = constant( $constpref . '_DESC' );
-$modversion['version']          = 2.61;
-$modversion['detailed_version'] = '2.61.1';
-$modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
-$modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
-$modversion['cube_style']       = true;
-$modversion['help']             = 'help.html';
-$modversion['license']          = 'GPL';
-$modversion['official']         = 0;
-// $modversion['image']         = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
-$modversion['image']            = '/images/module_xelfinder.svg';
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
+$modversion['name']             = 'xelFinder';
+$modversion['version']          = '2.61';
+$modversion['detailed_version'] = '2.61.2';
+$modversion['description']      = constant( $constpref . '_DESC' );
+$modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
+$modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
+$modversion['license']          = 'GPL';
+$modversion['image']            = '/images/module_xelfinder.svg'; // $modversion['image'] = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
+$modversion['icon']             = 'images/module_icon.svg';
+$modversion['help']             = 'help.html';
+$modversion['official']         = 0;
+$modversion['cube_style']       = true;
 $modversion['read_any']         = true;
 
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false;
 $modversion['tables']  = [];
 
-// Admin things
+// Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/admin_menu.php';
@@ -95,16 +93,10 @@ $modversion['config'] = [
 		'valuetype'   => 'string',
 		'default'     => $mydirname . ':xelfinder_db:uploads/xelfinder:' . constant( $constpref . '_SHARE_FOLDER' ) . '
 ' . $mydirname . ':xelfinder:uploads/elfinder:elFinder:gid=1
-myalbum:myalbum:uploads/photos:MyAlbum
-gnavi:gnavi:uploads/gnavi:GNAVI
-mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS
 #xelfinder:xelfinder:/:html:gid=1|chmod=1
 #xelfinder:xelfinder:[trust]/:xoops_trust_path:gid=1|chmod=1
 #xelfinder:xelfinder:[trust]/cache:TrustCache:gid=1
-#xelfinder:xelfinder:preload:Preload:gid=1
-#xelfinder:ftp:preload:Preload:gid=1
-#xelfinder:dropbox:/:Dropbox:gid=1
-#xelfinder:flyCopy:/:Copy.com:gid=1|ext_consumerKey=[Consumer Key]|ext_consumerSecret=[Consumer Secret]|ext_accessToken=[Access Token]|ext_tokenSecret=[Token Secret]'
+#xelfinder:xelfinder:preload:Preload:gid=1'
 	],
 	[
 		'name'        => 'disabled_cmds_by_gids',

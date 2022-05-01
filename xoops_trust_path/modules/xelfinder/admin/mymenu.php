@@ -1,6 +1,13 @@
 <?php
-
-/********* mymenu for D3 modules always require altsys>=0.5 ********/
+/**
+ * mymenu for D3 modules always require altsys
+ * @package    XelFinder
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  (c) 2005-2022 Author
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ */
 
 // Deny direct access
 if ( 'mymenu' == preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] ) ) {
@@ -8,26 +15,31 @@ if ( 'mymenu' == preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] ) ) {
 }
 
 global $xoopsModule;
+
 if ( ! is_object( $xoopsModule ) ) {
 	die( '$xoopsModule is not set' );
 }
 
-
 // language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
+
 if ( ! file_exists( $langmanpath ) ) {
 	die( 'install the latest altsys' );
 }
+
 require_once( $langmanpath );
+
 $langman = D3LanguageManager::getInstance();
+
 $langman->read( 'modinfo.php', $mydirname, $mytrustdirname );
 
 include dirname( __DIR__ ) . '/admin_menu.php';
 
 // Block Admin
 if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
-	// myblocksadmin
-	$title       = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
+
+	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
+
 	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
 }
 
@@ -43,7 +55,8 @@ if ( count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModul
 
 $adminmenu = array_merge( $adminmenu, $adminmenu4altsys );
 
-$mymenu_uri  = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
+$mymenu_uri = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
+
 $mymenu_link = substr( strstr( $mymenu_uri, '/admin/' ), 1 );
 
 
@@ -69,10 +82,8 @@ if ( empty( $adminmenu_hilighted ) ) {
 
 // link conversion from relative to absolute
 foreach ( array_keys( $adminmenu ) as $i ) {
-	// save memory with stripos
-	//if(false === stristr($adminmenu[$i]['link'] , XOOPS_URL )) {
-	if ( false === stripos( $adminmenu[ $i ]['link'], XOOPS_URL ) ) {
-		$adminmenu[ $i ]['link'] = XOOPS_MODULE_URL . "/$mydirname/" . $adminmenu[ $i ]['link'];
+	if ( stripos( $adminmenu[ $i ]['link'], XOOPS_URL ) === false ) {
+		$adminmenu[ $i ]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[ $i ]['link'];
 	}
 }
 
@@ -82,11 +93,14 @@ $dirname = ucfirst( $mydirname );
 
 // display
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
+
 $tpl = new D3Tpl();
+
 $tpl->assign(
 	[
 		'adminmenu' => $adminmenu,
 		'dirname'   => $dirname,
 	]
 );
+
 $tpl->display( 'db:altsys_inc_menu.html' );

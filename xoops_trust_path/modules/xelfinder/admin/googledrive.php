@@ -135,7 +135,7 @@ if ( $php54up && $vendor ) {
 
 				echo '<h3>Authentication and authorization reauthorization</h3>';
 
-                echo'<p><a class="ui-btn" href="' . $selfURL . '&start">Reauthorization</a></p>';
+                echo'<p><a class="button" href="' . $selfURL . '&start">Reauthorization</a></p>';
 				$form = false;
 
 			} catch ( Google_Exception $e ) {
@@ -168,7 +168,7 @@ if ( $php54up && $vendor ) {
             echo '<p>All requests to the API must be authorized by an authenticated user.</p>
         <p>Both Sign In With Google and One Tap authentication include a consent screen which tells users the application 
             requesting access to their data, what kind of data they are asked for and the terms that apply.</p>';
-			echo '<a class="ui-btn" href="' . $authUrl . '" target="_blank">Please allow the application access.</a>';
+			echo '<a class="button" href="' . $authUrl . '" target="_blank">Please allow the application access.</a>';
 			$form = false;
 		}
 	}
@@ -263,7 +263,7 @@ if ( $php54up && $vendor ) {
         echo '<hr>'
             .'<h2>'. xelfinderAdminLang( 'COMPOSER_UPDATE' ) .'</h2>'
             .'<div class="tips">'. xelfinderAdminLang( 'COMPOSER_UPDATE_HELP' ) .'</div>'
-            .'<p><a class="ui-btn" href="./index.php?page=vendorup">'. xelfinderAdminLang( 'COMPOSER_RUN_UPDATE' ) .'</a></p>';
+            .'<p><a class="button" href="./index.php?page=vendorup">'. xelfinderAdminLang( 'COMPOSER_RUN_UPDATE' ) .'</a></p>';
 
 } else {
     echo '<div class="error"><p>Update Vendor requires PHP >= 5.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
