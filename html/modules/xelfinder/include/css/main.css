@@ -23,7 +23,7 @@
 }
 
 
-.xelfinder .button {
+.xelfinder > .button {
     margin: 10px;
     text-decoration: none;
     font: bold 1.2em 'Trebuchet MS',Arial, Helvetica; /*Change the em value to scale the button*/
@@ -42,13 +42,13 @@
 
 }
 
-.xelfinder .button,
-.xelfinder .button span {
+.xelfinder > .button,
+.xelfinder > .button span {
     -moz-border-radius: .3em;
     border-radius: .3em;
 }
 
-.xelfinder .button span {
+.xelfinder > .button span {
     border-top: 1px solid #fff; /* Fallback style */
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     display: block;
@@ -71,69 +71,69 @@
     -webkit-background-size: 3px 3px;
 }
 
-.xelfinder .button:hover {
+.xelfinder > .button:hover {
     box-shadow: 0 0 .1em rgba(0,0,0,0.4);
     -moz-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
     -webkit-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
 }
 
-.xelfinder .button:active {
+.xelfinder > .button:active {
     /* When pressed, move it down 1px */
     position: relative;
     top: 1px;
 }
 
-.xelfinder .button-blue {
+.xelfinder > .button-blue {
     background: #4477a1;
     background: -webkit-gradient(linear, left top, left bottom, from(#81a8cb), to(#4477a1) );
     background: -moz-linear-gradient(-90deg, #81a8cb, #4477a1);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#81a8cb', endColorstr='#4477a1');
 }
 
-.xelfinder .button-blue:hover {
+.xelfinder > .button-blue:hover {
     background: #81a8cb;
     background: -webkit-gradient(linear, left top, left bottom, from(#4477a1), to(#81a8cb) );
     background: -moz-linear-gradient(-90deg, #4477a1, #81a8cb);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4477a1', endColorstr='#81a8cb');
 }
 
-.xelfinder .button-blue:active {
+.xelfinder > .button-blue:active {
     background: #4477a1;
 }
 
-.xelfinder .button-orange {
+.xelfinder > .button-orange {
     background: #F09C15;
     background: -webkit-gradient(linear, left top, left bottom, from(#F8C939), to(#F09C15) );
     background: -moz-linear-gradient(-90deg, #F8C939, #F09C15);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F8C939', endColorstr='#F09C15');
 }
 
-.xelfinder .button-orange:hover {
+.xelfinder > .button-orange:hover {
     background: #F8C939;
     background: -webkit-gradient(linear, left top, left bottom, from(#F09C15), to(#F8C939) );
     background: -moz-linear-gradient(-90deg, #F09C15, #F8C939);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F09C15', endColorstr='#F8C939');
 }
 
-.xelfinder .button-orange:active {
+.xelfinder > .button-orange:active {
     background: #F09C15;
 }
 
-.xelfinder .button-green {
+.xelfinder > .button-green {
     background: #428739;
     background: -webkit-gradient(linear, left top, left bottom, from(#C8DD95), to(#428739) );
     background: -moz-linear-gradient(-90deg, #C8DD95, #428739);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#C8DD95', endColorstr='#428739');
 }
 
-.xelfinder .button-green:hover {
+.xelfinder > .button-green:hover {
     background: #C8DD95;
     background: -webkit-gradient(linear, left top, left bottom, from(#428739), to(#C8DD95) );
     background: -moz-linear-gradient(-90deg, #428739, #C8DD95);
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#428739', endColorstr='#C8DD95');
 }
 
-.xelfinder .button-green:active {
+.xelfinder > .button-green:active {
     background: #428739;
 }
 
