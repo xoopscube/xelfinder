@@ -19,22 +19,24 @@ $langman = D3LanguageManager::getInstance();
 $langman->read( 'modinfo.php', $mydirname, $mytrustdirname, false );
 $constpref = '_MI_' . strtoupper( $mydirname );
 
+// Manifesto
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = 'xelFinder';
-$modversion['version']          = '2.61';
-$modversion['detailed_version'] = '2.61.3';
+$modversion['version']          = '2.62';
+$modversion['detailed_version'] = '2.62.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
 $modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
 $modversion['license']          = 'GPL';
-$modversion['image']            = '/images/module_xelfinder.svg'; // $modversion['image'] = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
+$modversion['image']            = '/images/module_xelfinder.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['official']         = 0;
 $modversion['cube_style']       = true;
 $modversion['read_any']         = true;
 
+// SQL Install
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false;
 $modversion['tables']  = [];
@@ -98,6 +100,14 @@ $modversion['config'] = [
 #xelfinder:xelfinder:[trust]/cache:TrustCache:gid=1
 #xelfinder:xelfinder:preload:Preload:gid=1'
 	],
+    [
+        'name'        => 'disable_pathinfo',
+        'title'       => $constpref . '_DISABLE_PATHINFO',
+        'description' => $constpref . '_DISABLE_PATHINFO_DESC',
+        'formtype'    => 'yesno',
+        'valuetype'   => 'int',
+        'default'     => 0
+    ],
 	[
 		'name'        => 'disabled_cmds_by_gids',
 		'title'       => $constpref . '_DISABLED_CMDS_BY_GID',
@@ -659,14 +669,6 @@ $modversion['config'] = [
 		'formtype'    => 'textbox',
 		'valuetype'   => 'string',
 		'default'     => ''
-	],
-	[
-		'name'        => 'disable_pathinfo',
-		'title'       => $constpref . '_DISABLE_PATHINFO',
-		'description' => $constpref . '_DISABLE_PATHINFO_DESC',
-		'formtype'    => 'yesno',
-		'valuetype'   => 'int',
-		'default'     => 0
 	],
 	[
 		'name'        => 'edit_disable_linked',
