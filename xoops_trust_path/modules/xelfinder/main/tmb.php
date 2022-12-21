@@ -1,9 +1,10 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/class/xelFinderMisc.class.php';
-$xelFinderMisc = new xelFinderMisc($mydirname);
+require_once dirname( __DIR__ ) . '/class/xelFinderMisc.class.php';
+
+$xelFinderMisc           = new xelFinderMisc( $mydirname );
 $xelFinderMisc->myConfig = $xoopsModuleConfig;
-$xelFinderMisc->dbSetCharset('utf8');
+$xelFinderMisc->dbSetCharset( 'utf8' );
 
 $xelFinderMisc->mode = 'tmb';
 

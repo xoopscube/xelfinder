@@ -1,4 +1,4 @@
-if (typeof jQuery == 'undefind') {
+if (typeof jQuery == 'undefined') {
 	document.write ('<script type="text/javascript" src="//www.google.com/jsapi"></script>');
 	google.load('jquery', '1');
 }

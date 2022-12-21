@@ -169,7 +169,7 @@ _msgs.cmdlogin = 'Login';
 _msgs.logout = '$1: Logout';
 _msgs.username = 'UserName';
 _msgs.password = 'Password';
-_msgs.loginFaild = 'Login Faild.';
+_msgs.loginFaild = 'Login Failed.';
 
 } catch(e) {}
 }));

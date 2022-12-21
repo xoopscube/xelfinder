@@ -4,6 +4,7 @@ if (window.parent) {
 $(document).ready(function() {
 	// keep alive
 	var extCheck = connectorUrl;
+
 	setInterval(function(){
 		jQuery.ajax({url:myUrl+"/connector.php?keepalive=1",cache:false});
 		if (extCheck) {
@@ -14,6 +15,7 @@ $(document).ready(function() {
 	var customData = { admin : adminMode, ctoken : cToken };
 	var cors = false;
 	var IElt10;
+
 	if (! connectorUrl) {
 		connectorUrl = myUrl + 'connector.php';
 	} else {
@@ -167,11 +169,11 @@ $(document).ready(function() {
 		},
 		themes : {
 			default: {
-				'name': 'default',
-				'cssurls': 'css/theme.css',
-				'author': 'elFinder Project',
-				'license': '3-clauses BSD'
-			}
+				'name': 'Dark Slim',
+				'cssurls': 'themes/dark-slim/css/theme.css',
+				'author': 'John Fort',
+				'license': 'MIT'
+			},
 		}
 	};
 
@@ -244,7 +246,7 @@ $(document).ready(function() {
 			document.title =  path? path + ':' + title : title;
 		}
 	})
-	
+
 	// on error callback
 	.bind('error', function(e) {
 		if (e.data && e.data.error && e.data.error == 'errPleaseReload') {
@@ -261,6 +263,7 @@ $(document).ready(function() {
 			}
 		}
 	});
+
 });
 
 $.extend({

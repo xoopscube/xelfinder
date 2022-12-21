@@ -1,6 +1,9 @@
 <?php
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'xelfinder' ;
+if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) {
+	$mydirname = 'xelfinder';
+}
+
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
@@ -11,38 +14,39 @@ define( $constpref.'_LOADED' , 1 ) ;
 define( $constpref.'_DESC' , 'Webベースのファイルマネージャ elFinder をイメージマネージャとして利用するモジュール');
 
 // admin menu
-define($constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;
-define($constpref.'_ADMENU_GOTO_MANAGER' ,  'ファイルマネージャ' ) ;
-define($constpref.'_ADMENU_DROPBOX' ,       'Dropbox App Token 取得' ) ;
-define($constpref.'_ADMENU_GOOGLEDRIVE' ,   'GoogleDrive Token 取得' ) ;
-define($constpref.'_ADMENU_VENDORUPDATE' ,  'vendor アップデート' ) ;
-define($constpref.'_ADMENU_MYLANGADMIN' ,   '言語定数管理' ) ;
-define($constpref.'_ADMENU_MYTPLSADMIN' ,   'テンプレート管理' ) ;
-define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
-define($constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
+define( $constpref.'_ADMENU_INDEX_CHECK' ,   '設定の確認' ) ;
+define( $constpref.'_ADMENU_GOTO_MODULE' ,   'モジュール画面' ) ;
+define( $constpref.'_ADMENU_GOTO_MANAGER' ,  'ファイルマネージャ' ) ;
+define( $constpref.'_ADMENU_DROPBOX' ,       'Dropbox App Token 取得' ) ;
+define( $constpref.'_ADMENU_GOOGLEDRIVE' ,   'GoogleDrive Token 取得' ) ;
+define( $constpref.'_ADMENU_VENDORUPDATE' ,  'vendor アップデート' ) ;
+define( $constpref.'_ADMENU_MYLANGADMIN' ,   '言語定数管理' ) ;
+define( $constpref.'_ADMENU_MYTPLSADMIN' ,   'テンプレート管理' ) ;
+define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
+define( $constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
 
 // configurations
 define( $constpref.'_MANAGER_TITLE' ,           'マネージャのページタイトル' );
 define( $constpref.'_MANAGER_TITLE_DESC' ,      '' );
 define( $constpref.'_VOLUME_SETTING' ,          'ボリュームドライバ' );
-define( $constpref.'_VOLUME_SETTING_DESC' ,     '[モジュールディレクトリ名]:[プラグイン名]:[ファイル格納ディレクトリ]:[表示名]:[オプション]<br />行単位で記述。先頭に # を置くと無視されます。<br />オプションは 「|」 で区切ります。<br />共通オプション:<br />gid=[有効にするグループIDをカンマ区切りで指定]<br />defaults=[read, write, hidden, lock の各パーミッションをデフォルトとして有効にするものをそれぞれの頭文字 r w h l で指定（例: defaults=rw）]<br />uploadMaxSize=[アップロードファイルサイズの上限値(例:2M)]<br />id=[任意の一意なID（固定リンクのURLハッシュに利用されます)]<br />encoding=[文字エンコーディング(iconvで有効な値)]<br />locale=[ロケール(重要: encoding に対応する適切なロケール)]<br />chmod=1(chmod が可能な場合、ファイル属性の変更を許可)' );
-define( $constpref.'_SHARE_HOLDER' ,            '共有フォルダ' );
+define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin button" type="button" data-module="xelfinder" data-help-article="#help-volume" aria-label="Help Volume"><b>?</b></button> 設定オプションは改行で区切られる。<br><pre>[モジュールディレクトリ名]:[プラグイン名]:[ファイル格納ディレクトリ]:[表示名]:[オプション]</pre>' );
+define( $constpref.'_SHARE_FOLDER' ,            '共有フォルダ' );
 define( $constpref.'_DISABLED_CMDS_BY_GID' ,    'グループ毎無効コマンド' );
-define( $constpref.'_DISABLED_CMDS_BY_GID_DESC','グループ毎(管理者を除く)に無効にするコマンドを [グループID]=[無効コマンド(カンマ区切り)] として ":" で区切って指定する。<br />コマンド名: archive, chmod, cut, duplicate, edit, empty, extract, mkdir, mkfile, paste, perm, put, rename, resize, rm, upload など' );
+define( $constpref.'_DISABLED_CMDS_BY_GID_DESC','グループ毎(管理者を除く)に無効にするコマンドを [グループID]=[無効コマンド(カンマ区切り)] として ":" で区切って指定する。<br>コマンド名: archive, chmod, cut, duplicate, edit, empty, extract, mkdir, mkfile, paste, perm, put, rename, resize, rm, upload など' );
 define( $constpref.'_DISABLE_WRITES_GUEST' ,    'ゲスト書き込み無効' );
 define( $constpref.'_DISABLE_WRITES_GUEST_DESC','ゲスト向けにグループ毎無効コマンドに指定した無効コマンドに合わせ、書き込み系コマンドをすべて追加します。' );
 define( $constpref.'_DISABLE_WRITES_USER' ,     '登録ユーザー書き込み無効' );
 define( $constpref.'_DISABLE_WRITES_USER_DESC', '登録ユーザー向けにグループ毎無効コマンドに指定した無効コマンドに合わせ、書き込み系コマンドをすべて追加します。' );
 define( $constpref.'_MAIL_NOTIFY_GUEST' ,       'メール通知(ゲスト)' );
 define( $constpref.'_MAIL_NOTIFY_GUEST_DESC',   'ゲストによるファイル追加を管理グループメンバーにメール通知します。' );
-define( $constpref.'_ENABLE_IMAGICK_PS' ,      'ImageMagickのPostScript処理有効' );
-define( $constpref.'_ENABLE_IMAGICK_PS_DESC',  '<a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscriptの脆弱性</a>が修正されている場合は、「はい」を選択することでImageMagickでPostScript関連の処理を有効にできます。' );
-define( $constpref.'_USE_SHARECAD_PREVIEW' ,      'ShareCAD プレビュー有効' );
-define( $constpref.'_USE_SHARECAD_PREVIEW_DESC',  'ShareCAD.org を利用しプレビュー可能なファイルタイプを拡大します。ShareCAD プレビュー利用時は ShareCAD.org へコンテンツ URL を通知します。' );
+define( $constpref.'_ENABLE_IMAGICK_PS' ,       'ImageMagickのPostScript処理有効' );
+define( $constpref.'_ENABLE_IMAGICK_PS_DESC',   '<a href="https://www.kb.cert.org/vuls/id/332928" target="_blank">Ghostscriptの脆弱性</a>が修正されている場合は、「はい」を選択することでImageMagickでPostScript関連の処理を有効にできます。' );
+define( $constpref.'_USE_SHARECAD_PREVIEW' ,    'ShareCAD プレビュー有効' );
+define( $constpref.'_USE_SHARECAD_PREVIEW_DESC','ShareCAD.org を利用しプレビュー可能なファイルタイプを拡大します。ShareCAD プレビュー利用時は ShareCAD.org へコンテンツ URL を通知します。' );
 define( $constpref.'_USE_GOOGLE_PREVIEW' ,      'Google Docs プレビュー有効' );
 define( $constpref.'_USE_GOOGLE_PREVIEW_DESC',  'Google Docs を利用しプレビュー可能なファイルタイプを拡大します。Google Docs プレビュー利用時に Google Docs へコンテンツ URL を通知します。' );
 define( $constpref.'_USE_OFFICE_PREVIEW' ,      'Office Online プレビュー有効' );
-define( $constpref.'_USE_OFFICE_PREVIEW_DESC',  'Office Online  を利用しプレビュー可能なファイルタイプを拡大します。Office Online プレビュー利用時は products.office.com へコンテンツ URL を通知します。' );
+define( $constpref.'_USE_OFFICE_PREVIEW_DESC',  '注：Microsoftは、組み込みのテレメトリクライアントを介して使用データを収集するだけでなく、ConnectedServicesの個々の使用を記録および保存します。 コンテンツのURLはproducts.office.comによって収集されます' );
 define( $constpref.'_MAIL_NOTIFY_GROUP' ,       'メール通知(グループ)' );
 define( $constpref.'_MAIL_NOTIFY_GROUP_DESC',   '選択したグループに属するユーザーによるファイル追加を管理グループメンバーにメール通知します。' );
 define( $constpref.'_FTP_NAME' ,                'FTP ネットボリューム表示名' );
@@ -52,13 +56,13 @@ define( $constpref.'_FTP_HOST_DESC' ,           '' );
 define( $constpref.'_FTP_PORT' ,                'FTP ポート番号' );
 define( $constpref.'_FTP_PORT_DESC' ,           'FTP は通常 21 番ポートです' );
 define( $constpref.'_FTP_PATH' ,                'ルートディレクトリ' );
-define( $constpref.'_FTP_PATH_DESC' ,           'FTP設定はボリュームドライバの "ftp" プラグインにも使用されます。<br />"ftp" プラグイン用のみに設定する場合はルートディレクトリを空欄にしてください。' );
+define( $constpref.'_FTP_PATH_DESC' ,           'FTP設定はボリュームドライバの "ftp" プラグインにも使用されます。<br>"ftp" プラグイン用のみに設定する場合はルートディレクトリを空欄にしてください。' );
 define( $constpref.'_FTP_USER' ,                'FTP ユーザー名' );
 define( $constpref.'_FTP_USER_DESC' ,           '' );
 define( $constpref.'_FTP_PASS' ,                'FTP パスワード' );
 define( $constpref.'_FTP_PASS_DESC' ,           '' );
 define( $constpref.'_FTP_SEARCH' ,              'FTP ボリュームを検索対象にする' );
-define( $constpref.'_FTP_SEARCH_DESC' ,         'FTP ネットボリュームを検索対象にすると、検索に時間がかかりタイムアウトすることがあります。<br />有効にした場合は問題なく検索できるかの確認をお忘れなく。' );
+define( $constpref.'_FTP_SEARCH_DESC' ,         'FTP ネットボリュームを検索対象にすると、検索に時間がかかりタイムアウトすることがあります。<br>有効にした場合は問題なく検索できるかの確認をお忘れなく。' );
 define( $constpref.'_BOXAPI_ID' ,               'Box API OAuth2 client_id' );
 define( $constpref.'_BOXAPI_ID_DESC' ,          'Box API Console [ https://app.box.com/developers/services ]' );
 define( $constpref.'_BOXAPI_SECRET' ,           'Box API OAuth2 client_secret' );
@@ -82,17 +86,17 @@ define( $constpref.'_DROPBOX_ACC_SECKEY_DESC' , '古い OAuth1 のための設�
 define( $constpref.'_DROPBOX_NAME' ,            '共有のDropboxボリューム表示名' );
 define( $constpref.'_DROPBOX_NAME_DESC' ,       '共有のDropboxボリュームは、ネットワークボリュームのマウントと違い、すべてのユーザーに表示されます。' );
 define( $constpref.'_DROPBOX_PATH' ,            '共有Dropboxのルートパス' );
-define( $constpref.'_DROPBOX_PATH_DESC' ,       '共有のDropboxボリュームで一般に開示してもよい階層のパスを指定します。(設定例: "/Public")<br />Dropbox 設定はボリュームドライバの "dropbox" プラグインにも使用されます。<br />"dropbox" プラグイン用のみに設定する場合はルートパスを空欄にしてください。' );
+define( $constpref.'_DROPBOX_PATH_DESC' ,       '共有のDropboxボリュームで一般に開示してもよい階層のパスを指定します。(設定例: "/Public")<br>Dropbox 設定はボリュームドライバの "dropbox" プラグインにも使用されます。<br>"dropbox" プラグイン用のみに設定する場合はルートパスを空欄にしてください。' );
 define( $constpref.'_DROPBOX_HIDDEN_EXT' ,      '共有のDropbox非表示ファイル' );
-define( $constpref.'_DROPBOX_HIDDEN_EXT_DESC' , '管理者にのみ表示するファイル（ファイル名の後方一致）をカンマ区切りで指定します。<br />末尾を「/」とした場合はフォルダを対象とします。' );
+define( $constpref.'_DROPBOX_HIDDEN_EXT_DESC' , '管理者にのみ表示するファイル（ファイル名の後方一致）をカンマ区切りで指定します。<br>末尾を「/」とした場合はフォルダを対象とします。' );
 define( $constpref.'_DROPBOX_WRITABLE_GROUPS' , '共有Dropbox書き込み許可グループ' );
 define( $constpref.'_DROPBOX_WRITABLE_GROUPS_DESC' , 'ここに設定したグループには、ファイル・フォルダの書き込みが許可されます。ただし、次の設定項目「共有のDropboxアップロード可能な MIME タイプ」、「共有のDropbox書き込みを許可ファイル」と「共有のDropbox非ロックファイル」で、何を許可するかをコントロールできます。その他のグループは読み取りのみ可能です。' );
 define( $constpref.'_DROPBOX_UPLOAD_MIME' ,     '共有のDropboxアップロード可能な MIME タイプ') ;
 define( $constpref.'_DROPBOX_UPLOAD_MIME_DESC' ,'書き込みを許可するグループがアップロード可能な MIME タイプをカンマ区切りで設定します。管理者はこの制限を受けません。') ;
 define( $constpref.'_DROPBOX_WRITE_EXT' ,       '共有のDropbox書き込み許可ファイル') ;
-define( $constpref.'_DROPBOX_WRITE_EXT_DESC' ,  '書き込みを許可するグループに書き込みを許可するファイル(ファイル名の後方一致)をカンマ区切りで指定します。<br />末尾を「/」とした場合はフォルダを対象とします。<br />管理者はこの制限を受けません。') ;
+define( $constpref.'_DROPBOX_WRITE_EXT_DESC' ,  '書き込みを許可するグループに書き込みを許可するファイル(ファイル名の後方一致)をカンマ区切りで指定します。<br>末尾を「/」とした場合はフォルダを対象とします。<br>管理者はこの制限を受けません。') ;
 define( $constpref.'_DROPBOX_UNLOCK_EXT' ,      '共有のDropbox非ロックファイル') ;
-define( $constpref.'_DROPBOX_UNLOCK_EXT_DESC' , 'ファイルをロックしない(非ロック)と、削除・移動・リネームが可能になります。<br />ロックをしないファイル(ファイル名の後方一致)をカンマ区切りで指定します。<br />末尾を「/」とした場合はフォルダを対象とします。<br />管理者には全てのファイルがロックされません。') ;
+define( $constpref.'_DROPBOX_UNLOCK_EXT_DESC' , 'ファイルをロックしない(非ロック)と、削除・移動・リネームが可能になります。<br>ロックをしないファイル(ファイル名の後方一致)をカンマ区切りで指定します。<br>末尾を「/」とした場合はフォルダを対象とします。<br>管理者には全てのファイルがロックされません。') ;
 define( $constpref.'_JQUERY' ,                  'jQuery の URL' );
 define( $constpref.'_JQUERY_DESC' ,             'Google の CDN を利用しない場合に、jQuery の js の  URL を指定します。' );
 define( $constpref.'_JQUERY_UI' ,               'jQuery UI の URL' );
@@ -106,9 +110,9 @@ define( $constpref.'_GMAPS_APIKEY_DESC' ,       'KML プレビューで使用す
 define( $constpref.'_ZOHO_APIKEY' ,             'Zoho office editor API キー' );
 define( $constpref.'_ZOHO_APIKEY_DESC' ,        'Office アイテム編集時に Zoho office editor を使用する場合に API キーを指定します。<br/>API キーは <a href=""https://www.zoho.com/docs/help/office-apis.html#get-started" target="_blank">www.zoho.com/docs/help/office-apis.html</a> で取得できます。' );
 define( $constpref.'_CREATIVE_CLOUD_APIKEY' ,   'Creative SDK APIキー' );
-define( $constpref.'_CREATIVE_CLOUD_APIKEY_DESC','Creative Cloud の Creative SDK のイメージエディターを利用する場合の Creative Cloud APIキーを指定します。<br />APIキー は https://console.adobe.io/ で取得できます。' );
+define( $constpref.'_CREATIVE_CLOUD_APIKEY_DESC','Creative Cloud の Creative SDK のイメージエディターを利用する場合の Creative Cloud APIキーを指定します。<br>APIキー は https://console.adobe.io/ で取得できます。' );
 define( $constpref.'_ONLINE_CONVERT_APIKEY' ,   'ONLINE-CONVERT.COM APIキー' );
-define( $constpref.'_ONLINE_CONVERT_APIKEY_DESC','ONLINE-CONVERT.COM のコンテンツコンバーター API を利用する場合の ONLINE-CONVERT.COM APIキーを指定します。<br />APIキー は https://apiv2.online-convert.com/docs/getting_started/api_key.html で取得できます。' );
+define( $constpref.'_ONLINE_CONVERT_APIKEY_DESC','ONLINE-CONVERT.COM のコンテンツコンバーター API を利用する場合の ONLINE-CONVERT.COM APIキーを指定します。<br>APIキー は https://apiv2.online-convert.com/docs/getting_started/api_key.html で取得できます。' );
 define( $constpref.'_EDITORS_JS',               'editors.js の URL' );
 define( $constpref.'_EDITORS_JS_DESC',          'common/elfinder/js/extras/editors.default.js をカスタマイズした場合の JavaScript の URL を指定します。' );
 define( $constpref.'_UI_OPTIONS_JS',            'xelfinderUiOptions.js の URL' );
@@ -116,33 +120,33 @@ define( $constpref.'_UI_OPTIONS_JS_DESC',       'modules/'.$mydirname.'/include/
 define( $constpref.'_THUMBNAIL_SIZE' ,          '[xelfinder_db] 画像挿入時のサムネイルサイズ' );
 define( $constpref.'_THUMBNAIL_SIZE_DESC' ,     'BBコードでの画像挿入時のサムネイルサイズの規定値(px)' );
 define( $constpref.'_DEFAULT_ITEM_PERM' ,       '[xelfinder_db] 作成されるアイテムのパーミッション' );
-define( $constpref.'_DEFAULT_ITEM_PERM_DESC' ,  'パーミッションは3桁で[ファイルオーナー][グループ][ゲスト]<br />各桁 2進数4bitで [非表示(h)][読み込み(r)][書き込み(w)][ロック解除(u)]<br />744: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 4 = -r--' );
+define( $constpref.'_DEFAULT_ITEM_PERM_DESC' ,  'パーミッションは3桁で[ファイルオーナー][グループ][ゲスト]<br>各桁 2進数4bitで [非表示(h)][読み込み(r)][書き込み(w)][ロック解除(u)]<br>744: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 4 = -r--' );
 define( $constpref.'_USE_USERS_DIR' ,           '[xelfinder_db] ユーザー別フォルダの使用' );
 define( $constpref.'_USE_USERS_DIR_DESC' ,      '' );
 define( $constpref.'_USERS_DIR_PERM' ,          '[xelfinder_db] ユーザー別フォルダのパーミッション' );
-define( $constpref.'_USERS_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 7cc: オーナー 7 = -rwu, グループ c = hr--, ゲスト c = hr--' );
+define( $constpref.'_USERS_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 7cc: オーナー 7 = -rwu, グループ c = hr--, ゲスト c = hr--' );
 define( $constpref.'_USERS_DIR_ITEM_PERM' ,     '[xelfinder_db] ユーザー別フォルダに作成されるアイテムのパーミッション' );
-define( $constpref.'_USERS_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 7cc: オーナー 7 = -rwu, グループ c = hr--, ゲスト c = hr--' );
+define( $constpref.'_USERS_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 7cc: オーナー 7 = -rwu, グループ c = hr--, ゲスト c = hr--' );
 define( $constpref.'_USE_GUEST_DIR' ,           '[xelfinder_db] ゲスト用フォルダの使用' );
 define( $constpref.'_USE_GUEST_DIR_DESC' ,      '' );
 define( $constpref.'_GUEST_DIR_PERM' ,          '[xelfinder_db] ゲスト用フォルダのパーミッション' );
-define( $constpref.'_GUEST_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 766: オーナー 7 = -rwu, グループ 6 = -rw-, ゲスト 6 = -rw-' );
+define( $constpref.'_GUEST_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 766: オーナー 7 = -rwu, グループ 6 = -rw-, ゲスト 6 = -rw-' );
 define( $constpref.'_GUEST_DIR_ITEM_PERM' ,     '[xelfinder_db] ゲスト用フォルダに作成されるアイテムのパーミッション' );
-define( $constpref.'_GUEST_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 744: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 4 = -r--' );
+define( $constpref.'_GUEST_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 744: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 4 = -r--' );
 define( $constpref.'_USE_GROUP_DIR' ,           '[xelfinder_db] グループ別フォルダの使用' );
 define( $constpref.'_USE_GROUP_DIR_DESC' ,      '' );
 define( $constpref.'_GROUP_DIR_PARENT' ,        '[xelfinder_db] グループ別フォルダの親フォルダ名' );
 define( $constpref.'_GROUP_DIR_PARENT_DESC' ,   '' );
 define( $constpref.'_GROUP_DIR_PARENT_NAME' ,   'グループ毎閲覧');
 define( $constpref.'_GROUP_DIR_PERM' ,          '[xelfinder_db] グループ別フォルダのパーミッション' );
-define( $constpref.'_GROUP_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 768: オーナー 7 = -rwu, グループ 6 = -rw-, ゲスト 8 = h---' );
+define( $constpref.'_GROUP_DIR_PERM_DESC' ,     'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 768: オーナー 7 = -rwu, グループ 6 = -rw-, ゲスト 8 = h---' );
 define( $constpref.'_GROUP_DIR_ITEM_PERM' ,     '[xelfinder_db] グループ別フォルダに作成されるアイテムのパーミッション' );
-define( $constpref.'_GROUP_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br />例: 748: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 8 = h---' );
+define( $constpref.'_GROUP_DIR_ITEM_PERM_DESC' ,'ここでの設定は作成時のみ参照されます。作成後は elFinder で直接変更してください。<br>例: 748: オーナー 7 = -rwu, グループ 4 = -r--, ゲスト 8 = h---' );
 
 define( $constpref.'_UPLOAD_ALLOW_ADMIN' ,      '[xelfinder_db] 管理者にアップロードを許可する MIME タイプ' );
-define( $constpref.'_UPLOAD_ALLOW_ADMIN_DESC' , 'MIME タイプを半角スペース区切りで記述。<br />all: 全て許可, none: 何も許可しない<br />例: image text/plain' );
+define( $constpref.'_UPLOAD_ALLOW_ADMIN_DESC' , 'MIME タイプを半角スペース区切りで記述。<br>all: 全て許可, none: 何も許可しない<br>例: image text/plain' );
 define( $constpref.'_AUTO_RESIZE_ADMIN' ,       '[xelfinder_db] 管理者用自動リサイズ (px)' );
-define( $constpref.'_AUTO_RESIZE_ADMIN_DESC' ,  '画像をアップロード時、指定した矩形サイズに収まるように自動リサイズする値(px)。<br />何も入力しないと自動リサイズは行われません。' );
+define( $constpref.'_AUTO_RESIZE_ADMIN_DESC' ,  '画像をアップロード時、指定した矩形サイズに収まるように自動リサイズする値(px)。<br>何も入力しないと自動リサイズは行われません。' );
 define( $constpref.'_UPLOAD_MAX_ADMIN' ,        '[xelfinder_db] 管理者用最大ファイルサイズ' );
 define( $constpref.'_UPLOAD_MAX_ADMIN_DESC',    '管理者がアップロード可能な最大ファイルサイズを指定します。無指定または 0 で無制限となります。(例 10M)' );
 
@@ -175,20 +179,20 @@ define( $constpref.'_DISABLE_PATHINFO_DESC' ,   '環境変数 "PATH_INFO" が利
 define( $constpref.'_EDIT_DISABLE_LINKED' ,     '[xelfinder_db] リンク済みファイルの書き込み禁止' );
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'リンク切れや不用意な上書きを防止するためにリンク・参照されたファイルを自動的に書き込み禁止に設定します。' );
 
-define( $constpref.'_CHECK_NAME_VIEW' ,     '[xelfinder_db] ファイル参照URLのファイル名の照合' );
-define( $constpref.'_CHECK_NAME_VIEW_DESC' ,'ファイル参照用URLのファイル名を照合し登録されたファイル名と合致しない場合は "404 Not Found" エラーを返します。' );
+define( $constpref.'_CHECK_NAME_VIEW' ,         '[xelfinder_db] ファイル参照URLのファイル名の照合' );
+define( $constpref.'_CHECK_NAME_VIEW_DESC' ,    'ファイル参照用URLのファイル名を照合し登録されたファイル名と合致しない場合は "404 Not Found" エラーを返します。' );
 
 define( $constpref.'_CONNECTOR_URL' ,           '外部またはセキュア接続のコネクタURL（任意）' );
 define( $constpref.'_CONNECTOR_URL_DESC' ,      '外部サイトのコネクタに接続する場合やバックエンドとの通信のみセキュアな環境を利用する場合に connector.php の URL を指定してください。' );
 
 define( $constpref.'_CONN_URL_IS_EXT',          '外部のコネクタURL' );
-define( $constpref.'_CONN_URL_IS_EXT_DESC',     '任意指定したコネクタURLが外部サイトの場合に「はい」、コネクタURLがバックエンド通信のみSSL接続するURLの場合は「いいえ」を選択してください。<br />外部サイトのコネクタに接続する場合は相手先サイトにて、当サイトのオリジンドメインが許可されている必要があります。' );
+define( $constpref.'_CONN_URL_IS_EXT_DESC',     '任意指定したコネクタURLが外部サイトの場合に「はい」、コネクタURLがバックエンド通信のみSSL接続するURLの場合は「いいえ」を選択してください。<br>外部サイトのコネクタに接続する場合は相手先サイトにて、当サイトのオリジンドメインが許可されている必要があります。' );
 
 define( $constpref.'_ALLOW_ORIGINS',            '許可するドメインオリジン' );
-define( $constpref.'_ALLOW_ORIGINS_DESC',       '当サイトのコネクタに接続を許可する外部サイトのドメインオリジン（例:"http://example.com" 最後のスラッシュは不要）を行区切りで設定します。<br />コネクタURLがバックエンド通信のみSSL接続するURLの場合は「 <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> 」を指定する必要があります。' );
+define( $constpref.'_ALLOW_ORIGINS_DESC',       '当サイトのコネクタに接続を許可する外部サイトのドメインオリジン（例:"http://example.com" 最後のスラッシュは不要）を行区切りで設定します。<br>コネクタURLがバックエンド通信のみSSL接続するURLの場合は「 <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> 」を指定する必要があります。' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'unzip 実行時のロケール' );
-define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'アーカイブ解凍のコマンド unzip 使用時の言語ロケール設定。<br />通常は指定なしで問題ないと思われるが、解凍後のファイル名が文字化けする場合には ja_JP.Shift_JIS などとすると解消される場合がある。' );
+define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'アーカイブ解凍のコマンド unzip 使用時の言語ロケール設定。<br>通常は指定なしで問題ないと思われるが、解凍後のファイル名が文字化けする場合には ja_JP.Shift_JIS などとすると解消される場合がある。' );
 
 define( $constpref.'_AUTOSYNC_SEC_ADMIN',       '自動更新間隔(管理者):秒' );
 define( $constpref.'_AUTOSYNC_SEC_ADMIN_DESC',  '自動で更新チェックをする間隔を秒数で指定します。' );
@@ -209,7 +213,7 @@ define( $constpref.'_FFMPEG_PATH',              'ffmpeg コマンドのパス' )
 define( $constpref.'_FFMPEG_PATH_DESC',         'ffmpeg コマンドのパスが必要な場合に指定してください。' );
 
 define( $constpref.'_DEBUG' ,                   'デバッグモードを有効にする' );
-define( $constpref.'_DEBUG_DESC' ,              'デバッグモードにすると elFinder の "elfinder.min.css", "elfinder.min.js" ではなく個別のファイルを読み込みます。<br />また、JavaScript のレスポンスにデバグ情報を含めます。<br />パフォーマンス向上のために、通常はデバッグモードは無効にして運用することをお勧めします。' );
+define( $constpref.'_DEBUG_DESC' ,              'デバッグモードにすると elFinder の "elfinder.min.css", "elfinder.min.js" ではなく個別のファイルを読み込みます。<br>また、JavaScript のレスポンスにデバグ情報を含めます。<br>パフォーマンス向上のために、通常はデバッグモードは無効にして運用することをお勧めします。' );
 
 // admin/dropbox.php
 define( $constpref.'_DROPBOX_STEP1' ,        'Step 1: App の作成');
@@ -222,12 +226,16 @@ define( $constpref.'_DROPBOX_STEP3' ,        'Step 3: 取得完了。一般設�
 define( $constpref.'_DROPBOX_SET_PREF' ,     '次の値を一般設定の各項目に設定してください。');
 
 // admin/googledrive.php
-define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Google Drive Token の取得');
+define( $constpref.'_GOOGLEDRIVE_GET_TOKEN', 'Google Drive API' );
 
 // admin/composer_update.php
-define( $constpref.'_COMPOSER_UPDATE' ,       'plugins/vendor アップデート(composer update)');
-define( $constpref.'_COMPOSER_DO_UPDATE' ,    'アップデートを実行する(ある程度時間が掛かります)');
-define( $constpref.'_COMPOSER_UPDATE_STARTED','アップデートを開始しました。「アップデートが完了しました。」と表示されるまでお待ち下さい...');
-define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'アップデートが完了しました。');
+define( $constpref.'_COMPOSER_UPDATE' ,       'Vendor アップデート- Composer' );
+define( $constpref.'_COMPOSER_RUN_UPDATE' ,    'アップデートを実行する' );
+define( $constpref.'_COMPOSER_UPDATE_STARTED','アップデートを開始しました。「アップデートが完了しました。」と表示されるまでお待ち下さい...' );
+define( $constpref.'_COMPOSER_DONE_UPDATE' ,  'アップデートが完了しました。' );
+define( $constpref.'_COMPOSER_UPDATE_ERROR' , 'ドライバがインストールされていないか、正しくインストールされていない可能性があります。' );
+define( $constpref.'_COMPOSER_UPDATE_FAIL',   'ファイルが存在しません : %s ' );
+define( $constpref.'_COMPOSER_UPDATE_SUCCESS','ベンダーファイルが存在します : %s ' );
+define( $constpref.'_COMPOSER_UPDATE_TIME' ,  'インターネット接続によっては時間がかかる場合があります' );
 
 }
