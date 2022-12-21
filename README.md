@@ -14,7 +14,7 @@ MODULE |  X-elFinder (elFinder)
 ------------ | -------------
 Description  | elFinder web-based file manager running on JavaScript + PHP.
 Render Engine| Smarty v2 and XCube Layout
-Version      | 2.61
+Version      | 2.62.1
 Author       | @nao-pon Naoki Sawada
 Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
 Copyright    | 2005-2022 Author
