@@ -15,7 +15,7 @@ MODULE |  X-elFinder (elFinder)
 ------------ | -------------
 Description  | elFinder web-based file manager, web editors and cloud storage for XCL.
 Render Engine| Smarty v2 and XCube Layout
-Version      | 2.63.0
+Version      | 2.64.0
 Author | Nobuhiro Yasutomi @nbuy XCL PHP8  
 Author | Nuno Luciano @gigamaster XCL PHP7 
 Author       | @nao-pon Naoki Sawada
