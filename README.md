@@ -42,9 +42,9 @@ License      | elFinder is distributed under a BSD 3-Clause License.
 * Author : [nao-pon/xelfinder - GitHub](https://github.com/nao-pon/xelfinder)
 * Maintainer : [gigamaster - XCL ^2.3.x](https://github.com/xoopscube/xelfinder)
 
-This module is released by default with the XCL bundle package 2.3.x.  
+This module is released with the XCL bundle package 2.3.x.  
 
-Web interface for easy management of editors (code, graphics) and cloud storage (gdrive, box, dropbox, etc.)  
+GUI-based control panel for easy management of editors (code, graphics) and cloud storage (gdrive, box, dropbox, etc.)  
 
 For topics, questions, and requests about elFinder, please refer to [elFinder](https://github.com/Studio-42/elFinder). 
 
@@ -53,7 +53,7 @@ For topics, questions, and requests about elFinder, please refer to [elFinder](h
 
 * XOOPSCube Web Application Platform
   * XCL ^2.3.x
-  * XDektop ^3.0.x
+  * XDesktop ^3.0.x
 
 ## Notes on installation
 
@@ -66,7 +66,7 @@ The following directories require write (file creation) permission (e.g. 777 or 
 PathInfo is used for image referencing, but depending on the server environment,  
 PathInfo may not be available and the image may not be displayed correctly.
 
-In this case, please set "Disable PathInfo for file reference URLs" to "Yes"  
+In this case, set "Disable PathInfo for file reference URLs" to "Yes"  
 in the general settings of the administration page.
 
 ### Change the popup to IFRAME
