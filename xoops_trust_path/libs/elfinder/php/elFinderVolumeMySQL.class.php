@@ -68,20 +68,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      */
     public function __construct()
     {
-        $opts = array(
-            'host' => 'localhost',
-            'user' => '',
-            'pass' => '',
-            'db' => '',
-            'port' => null,
-            'socket' => null,
-            'files_table' => 'elfinder_file',
-            'tmbPath' => '',
-            'tmpPath' => '',
-            'rootCssClass' => 'elfinder-navbar-root-sql',
-            'noSessionCache' => array('hasdirs'),
-            'isLocalhost' => false
-        );
+        $opts = ['host' => 'localhost', 'user' => '', 'pass' => '', 'db' => '', 'port' => null, 'socket' => null, 'files_table' => 'elfinder_file', 'tmbPath' => '', 'tmpPath' => '', 'rootCssClass' => 'elfinder-navbar-root-sql', 'noSessionCache' => ['hasdirs'], 'isLocalhost' => false];
         $this->options = array_merge($this->options, $opts);
         $this->options['mimeDetect'] = 'internal';
     }
@@ -118,7 +105,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             $err = mysqli_connect_error();
         }
         if ($err) {
-            return $this->setError(array('Unable to connect to MySQL server.', $err));
+            return $this->setError(['Unable to connect to MySQL server.', $err]);
         }
 
         if (!$this->needOnline && empty($this->ARGS['init'])) {
@@ -233,6 +220,23 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
     }
 
     /**
+     * Perform sql prepared statement and return result.
+     * Increase sqlCnt and save error if occurred.
+     *
+     * @param mysqli_stmt $stmt
+     * @return bool
+     */
+    protected function execute($stmt)
+    {
+        $this->sqlCnt++;
+        $res = $stmt->execute();
+        if (!$res) {
+            $this->dbError = $this->db->error;
+        }
+        return $res;
+    }
+
+    /**
      * Create empty object with required mimetype
      *
      * @param  string $path parent dir path
@@ -264,7 +268,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function cacheDir($path)
     {
-        $this->dirsCache[$path] = array();
+        $this->dirsCache[$path] = [];
 
         $sql = 'SELECT f.id, f.parent_id, f.name, f.size, f.mtime AS ts, f.mime, f.read, f.write, f.locked, f.hidden, f.width, f.height, IF(ch.id, 1, 0) AS dirs 
                 FROM ' . $this->tbf . ' AS f 
@@ -311,7 +315,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function getParents($path)
     {
-        $parents = array();
+        $parents = [];
 
         while ($path) {
             if ($file = $this->stat($path)) {
@@ -361,30 +365,30 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             return parent::doSearch($path, $q, $mimes);
         }
 
-        $dirs = array();
+        $dirs = [];
         $timeout = $this->options['searchTimeout'] ? $this->searchStart + $this->options['searchTimeout'] : 0;
 
         if ($path != $this->root || $this->rootHasParent) {
-            $dirs = $inpath = array(intval($path));
+            $dirs = $inpath = [intval($path)];
             while ($inpath) {
                 $in = '(' . join(',', $inpath) . ')';
-                $inpath = array();
+                $inpath = [];
                 $sql = 'SELECT f.id FROM %s AS f WHERE f.parent_id IN ' . $in . ' AND `mime` = \'directory\'';
                 $sql = sprintf($sql, $this->tbf);
                 if ($res = $this->query($sql)) {
-                    $_dir = array();
+                    $_dir = [];
                     while ($dat = $res->fetch_assoc()) {
                         $inpath[] = $dat['id'];
                     }
-                    $dirs = array_merge($dirs, $inpath);
+                    $dirs = [...$dirs, ...$inpath];
                 }
             }
         }
 
-        $result = array();
+        $result = [];
 
         if ($mimes) {
-            $whrs = array();
+            $whrs = [];
             foreach ($mimes as $mime) {
                 if (strpos($mime, '/') === false) {
                     $whrs[] = sprintf('f.mime LIKE \'%s/%%\'', $this->db->real_escape_string($mime));
@@ -624,7 +628,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             return $stat;
 
         }
-        return array();
+        return [];
     }
 
     /**
@@ -667,9 +671,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function _scandir($path)
     {
-        return isset($this->dirsCache[$path])
-            ? $this->dirsCache[$path]
-            : $this->cacheDir($path);
+        return $this->dirsCache[$path] ?? $this->cacheDir($path);
     }
 
     /**
@@ -888,11 +890,13 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
                 chmod($tmpfile, 0644);
 
                 $sql = $id > 0
-                    ? 'REPLACE INTO %s (id, parent_id, name, content, size, mtime, mime, width, height) VALUES (' . $id . ', %d, \'%s\', LOAD_FILE(\'%s\'), %d, %d, \'%s\', %d, %d)'
-                    : 'INSERT INTO %s (parent_id, name, content, size, mtime, mime, width, height) VALUES (%d, \'%s\', LOAD_FILE(\'%s\'), %d, %d, \'%s\', %d, %d)';
-                $sql = sprintf($sql, $this->tbf, $dir, $this->db->real_escape_string($name), $this->loadFilePath($tmpfile), $size, $ts, $mime, $w, $h);
+                    ? 'REPLACE INTO %s (id, parent_id, name, content, size, mtime, mime, width, height) VALUES (' . $id . ', ?, ?, LOAD_FILE(?), ?, ?, ?, ?, ?)'
+                    : 'INSERT INTO %s (parent_id, name, content, size, mtime, mime, width, height) VALUES (?, ?, LOAD_FILE(?), ?, ?, ?, ?, ?)';
+                $stmt = $this->db->prepare(sprintf($sql, $this->tbf));
+                $path = $this->loadFilePath($tmpfile);
+                $stmt->bind_param("issiisii", $dir, $name, $path, $size, $ts, $mime, $w, $h);
 
-                $res = $this->query($sql);
+                $res = $this->execute($stmt);
                 unlink($tmpfile);
 
                 if ($res) {
@@ -909,13 +913,14 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
         }
 
         $sql = $id > 0
-            ? 'REPLACE INTO %s (id, parent_id, name, content, size, mtime, mime, width, height) VALUES (' . $id . ', %d, \'%s\', \'%s\', %d, %d, \'%s\', %d, %d)'
-            : 'INSERT INTO %s (parent_id, name, content, size, mtime, mime, width, height) VALUES (%d, \'%s\', \'%s\', %d, %d, \'%s\', %d, %d)';
-        $sql = sprintf($sql, $this->tbf, $dir, $this->db->real_escape_string($name), $this->db->real_escape_string($content), $size, $ts, $mime, $w, $h);
+            ? 'REPLACE INTO %s (id, parent_id, name, content, size, mtime, mime, width, height) VALUES (' . $id . ', ?, ?, ?, ?, ?, ?, ?, ?)'
+            : 'INSERT INTO %s (parent_id, name, content, size, mtime, mime, width, height) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        $stmt = $this->db->prepare(sprintf($sql, $this->tbf));
+        $stmt->bind_param("issiisii", $dir, $name, $content, $size, $ts, $mime, $w, $h);
 
         unset($content);
 
-        if ($this->query($sql)) {
+        if ($this->execute($stmt)) {
             return $id > 0 ? $id : $this->db->insert_id;
         }
 

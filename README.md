@@ -15,11 +15,11 @@ MODULE |  X-elFinder (elFinder)
 ------------ | -------------
 Description  | elFinder web-based file manager, web editors and cloud storage for XCL.
 Render Engine| Smarty v2 and XCube Layout
-Version      | 2.64.0
+Version      | 2.65.0
 Author | Nobuhiro Yasutomi @nbuy XCL PHP8  
 Author | Nuno Luciano @gigamaster XCL PHP7 
 Author       | @nao-pon Naoki Sawada
-Copyright    | 2005-2023 Authors
+Copyright    | 2005-2024 Authors
 License      | XCL module is distributed under a GPL 2 License.
 License      | elFinder is distributed under a BSD 3-Clause License.
 
@@ -28,9 +28,9 @@ License      | elFinder is distributed under a BSD 3-Clause License.
 
 
 
-          Apache, Nginx, etc. PHP 7.2 - PHP 8.2
-          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.3.+
+          Apache, Nginx, etc. PHP 8.x.x
+          MySQL 5.7, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.4.0
 
 
 
@@ -42,7 +42,7 @@ License      | elFinder is distributed under a BSD 3-Clause License.
 * Author : [nao-pon/xelfinder - GitHub](https://github.com/nao-pon/xelfinder)
 * Maintainer : [gigamaster - XCL ^2.3.x](https://github.com/xoopscube/xelfinder)
 
-This module is released with the XCL bundle package 2.3.x.  
+This module is released with the XCL bundle package 2.4.0.  
 
 GUI-based control panel for easy management of editors (code, graphics) and cloud storage (gdrive, box, dropbox, etc.)  
 

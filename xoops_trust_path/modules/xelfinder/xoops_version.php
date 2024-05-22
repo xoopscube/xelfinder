@@ -2,10 +2,10 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
- * @copyright  (c) 2005-2022 Author
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL V2.0
  */
 
@@ -23,8 +23,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = 'xelFinder';
-$modversion['version']          = '2.64';
-$modversion['detailed_version'] = '2.64.0';
+$modversion['version']          = '2.65';
+$modversion['detailed_version'] = '2.65.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
 $modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7, PHP8';
@@ -77,6 +77,7 @@ if ( defined( 'LEGACY_BASE_VERSION' ) ) {
 	$_encrypt = 'string';
 }
 $_group_multi = ( ( defined( '_MI_LEGACY_DETAILED_VERSION' ) && version_compare( _MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>=' ) ) ? 'group_checkbox' : 'group_multi' );
+
 // Configs
 $modversion['config'] = [
 	[

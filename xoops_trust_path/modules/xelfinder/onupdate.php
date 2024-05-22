@@ -2,10 +2,10 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2024 Authors
+ * @license    GPL v2.0
  */
 
 eval( ' function xoops_module_update_' . $mydirname . '( $module ) { return xelfinder_onupdate_base( $module , \'' . $mydirname . '\' ) ; } ' );

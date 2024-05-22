@@ -2,9 +2,9 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -14,7 +14,8 @@ eval( ' function xoops_module_install_' . $mydirname . '( $module ) { return xel
 if ( ! function_exists( 'xelfinder_oninstall_base' ) ) {
 
 	function xelfinder_oninstall_base( $module, $mydirname ) {
-		// transactions on module install
+		$pieces = null;
+  // transactions on module install
 
 		global $ret; // TODO :-D
 

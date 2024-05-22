@@ -2,10 +2,10 @@
 /**
  * mymenu for D3 modules always require altsys
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -36,16 +36,11 @@ $langman->read( 'modinfo.php', $mydirname, $mytrustdirname );
 include dirname( __DIR__ ) . '/admin_menu.php';
 
 // Block Admin
-if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
-
-	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
-
-	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
-}
+// Rendered from admin_menu.php
 
 // Preferences
-$config_handler =& xoops_gethandler( 'config' );
-if ( count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) > 0 ) {
+$config_handler = xoops_gethandler( 'config' );
+if ( (is_countable($config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) )) ? count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) : 0) > 0 ) {
 	// legacy->preferences
 	$adminmenu[] = [
 		'title' => _PREFERENCES,
@@ -72,7 +67,7 @@ foreach ( array_keys( $adminmenu ) as $i ) {
 }
 if ( empty( $adminmenu_hilighted ) ) {
 	foreach ( array_keys( $adminmenu ) as $i ) {
-		if ( 'admin/' === substr( $adminmenu[ $i ]['link'], 0, 6 ) && stristr( $mymenu_uri, $adminmenu[ $i ]['link'] ) ) {
+		if ( 'admin/' === substr( $adminmenu[ $i ]['link'], 0, 6 ) && stristr( $mymenu_uri, (string) $adminmenu[ $i ]['link'] ) ) {
 			$adminmenu[ $i ]['selected']     = true;
 			$GLOBALS['altsysAdminPageTitle'] = $adminmenu[ $i ]['title'];
 			break;
@@ -82,7 +77,7 @@ if ( empty( $adminmenu_hilighted ) ) {
 
 // link conversion from relative to absolute
 foreach ( array_keys( $adminmenu ) as $i ) {
-	if ( stripos( $adminmenu[ $i ]['link'], XOOPS_URL ) === false ) {
+	if ( stripos( $adminmenu[ $i ]['link'], (string) XOOPS_URL ) === false ) {
 		$adminmenu[ $i ]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[ $i ]['link'];
 	}
 }
